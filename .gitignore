@@ -1,4 +1,41 @@
+# Dependencies
 node_modules/
+
+# Build output
+.astro/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+!.env.example
+
+# Generated assets
 src/assets/generated/
 public/img/
-.astro/
+
+# Binary images
+*.avif
+*.gif
+*.heic
+*.jpeg
+*.jpg
+*.png
+*.webp
+
+# Allow tracked public files
+!public/CNAME
+!public/robots.txt
