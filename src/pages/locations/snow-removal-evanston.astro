@@ -1,8 +1,7 @@
 ---
 import Template from "./_template.astro";
 import type { Props } from "./_template.astro";
-import { BUSINESS } from "../../data/business";
-import { formatPhoneForDisplay } from "../../utils/phone";
+import { BUSINESS, phone_display, phone_e164 } from "../../data/business";
 
 const page: Props = {
   title: "Evanston snow removal for homes and storefronts",
@@ -42,7 +41,7 @@ const page: Props = {
       question: "How do I request priority support?",
       answer:
         "Call our dispatch team or submit the emergency snow removal form for urgent pushes.",
-      answerHtml: `<p>Call <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> to reach dispatch directly or submit the <a href="/services/emergency-snow-removal/">emergency snow removal form</a> for urgent pushes.</p>`,
+      answerHtml: `<p>Call <a href="tel:${phone_e164}">${phone_display}</a> to reach dispatch directly or submit the <a href="/services/emergency-snow-removal/">emergency snow removal form</a> for urgent pushes.</p>`,
     },
   ],
 };

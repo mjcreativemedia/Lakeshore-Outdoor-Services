@@ -1,15 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
 import SEO from "../components/SEO.astro";
-import { BUSINESS } from "../data/business";
-import { formatPhoneForDisplay } from "../utils/phone";
+import { BUSINESS, phone_display, phone_e164 } from "../data/business";
 
 const title = "Thanks — we got your request";
 const seoTitle = `Request received | ${BUSINESS.name}`;
 const description =
   "Thanks for contacting Lakeshore Outdoor Services. We’ll review your snow removal request and respond soon with scheduling options and pricing for your property.";
 const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
-const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
+const phoneDisplay = phone_display;
 ---
 <Base title={title} robots="noindex,follow">
   <SEO title={seoTitle} description={description} canonical={canonical} type="website" />
@@ -19,7 +18,7 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
   <h1>Thanks! We’ll reach out shortly.</h1>
   <p>
     Our team received your request. If this is urgent, call
-    <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> or email
+    <a href={`tel:${phone_e164}`}>{phoneDisplay}</a> or email
     <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>.
   </p>
   <p><a href="/">Back to home</a></p>

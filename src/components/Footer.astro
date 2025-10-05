@@ -1,9 +1,8 @@
 ---
-import { BUSINESS } from "../data/business";
-import { formatPhoneForDisplay } from "../utils/phone";
+import { BUSINESS, phone_display, phone_e164 } from "../data/business";
 
 const { address, areasServed } = BUSINESS;
-const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
+const phoneDisplay = phone_display;
 const primaryLocation = `${address.city}, ${address.region} • ${address.country}`;
 const featuredAreas = areasServed.slice(0, 6);
 ---
@@ -12,7 +11,7 @@ const featuredAreas = areasServed.slice(0, 6);
     <div>
       <h2>{BUSINESS.name}</h2>
       <p>
-        <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a>
+        <a href={`tel:${phone_e164}`}>{phoneDisplay}</a>
         <br />
         <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
       </p>

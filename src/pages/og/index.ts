@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { BUSINESS } from '../../data/business';
+import { BUSINESS, phone_display } from '../../data/business';
 
 export const prerender = true;
 
@@ -40,7 +40,7 @@ const svgTemplate = () => `<?xml version="1.0" encoding="UTF-8"?>
       Snow &amp; ice management across Chicago neighborhoods
     </text>
     <text y="164" fill="#93c5fd" font-family="'Inter', 'Segoe UI', sans-serif" font-size="26" font-weight="500">
-      Call ${BUSINESS.phone.replace(/\+/g, '')}
+      Call ${phone_display}
     </text>
     <text y="214" fill="#bae6fd" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24" font-weight="400">
       ${new URL(BUSINESS.site).hostname}

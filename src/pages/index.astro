@@ -2,15 +2,14 @@
 import Base from "../layouts/Base.astro";
 import SEO from "../components/SEO.astro";
 import JsonLd from "../components/JsonLd.astro";
-import { BUSINESS } from "../data/business";
-import { formatPhoneForDisplay } from "../utils/phone";
+import { BUSINESS, phone_display, phone_e164 } from "../data/business";
 
 const title = `${BUSINESS.name} | Chicago snow removal crews`;
 const description =
   "Chicago-based snow removal pros serving Hyde Park, South Shore, Bronzeville, Lakeview, Lincoln Park, Evanston, and nearby neighborhoods.";
 const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
 const { address, areasServed } = BUSINESS;
-const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
+const phoneDisplay = phone_display;
 const businessAddress = {
   "@type": "PostalAddress",
   addressLocality: address.city,
@@ -25,7 +24,7 @@ const schema: Record<string, unknown> = {
   name: BUSINESS.name,
   description,
   url: canonical,
-  telephone: BUSINESS.phone,
+  telephone: phone_e164,
   email: BUSINESS.email,
   address: businessAddress,
   areaServed: areasServed,
@@ -47,7 +46,7 @@ const displayAreas = areasServed;
       </p>
       <div class="actions">
         <a class="primary" href="/contact/">Request a quote</a>
-        <a class="secondary" href={`tel:${BUSINESS.phone}`}>Call {phoneDisplay}</a>
+        <a class="secondary" href={`tel:${phone_e164}`}>Call {phoneDisplay}</a>
       </div>
       <div class="quick-links">
         <a href="/services/snow-removal/">Snow removal programs</a>
