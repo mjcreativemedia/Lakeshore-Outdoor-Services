@@ -1,6 +1,9 @@
+export const phone_display = "(872) 272-2155";
+export const phone_e164 = "+18722722155";
+
 export const BUSINESS = {
   name: "Lakeshore Outdoor Services",
-  phone: "+1-773-236-6224",
+  phone: phone_e164,
   email: "lakeshoreoutdoorteam@gmail.com",
   site: "https://lakeshoreoutdoor.com",
   // service-area business => no street address

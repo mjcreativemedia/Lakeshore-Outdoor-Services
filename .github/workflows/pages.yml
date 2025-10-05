@@ -21,7 +21,9 @@ jobs:
           cache: npm
       - run: npm ci || npm install
       - name: Build
-        run: npx astro build
+        run: npm run build
+      - name: Check NAP consistency
+        run: npm run check:nap
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

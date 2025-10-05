@@ -1,8 +1,7 @@
 ---
 import Template from "./_template.astro";
 import type { Props } from "./_template.astro";
-import { BUSINESS } from "../../data/business";
-import { formatPhoneForDisplay } from "../../utils/phone";
+import { BUSINESS, phone_display, phone_e164 } from "../../data/business";
 
 const page: Props = {
   title: "Lakeview snow removal for busy Chicago blocks",
@@ -43,7 +42,7 @@ const page: Props = {
       question: "How do I request emergency service?",
       answer:
         "Call our office or submit the contact form to activate the emergency snow removal team.",
-      answerHtml: `<p>Call us at <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or submit the <a href="/contact/">contact form</a> to trigger our <a href="/services/emergency-snow-removal/">emergency snow removal team</a>.</p>`,
+      answerHtml: `<p>Call us at <a href="tel:${phone_e164}">${phone_display}</a> or submit the <a href="/contact/">contact form</a> to trigger our <a href="/services/emergency-snow-removal/">emergency snow removal team</a>.</p>`,
     },
   ],
 };

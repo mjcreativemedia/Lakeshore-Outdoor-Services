@@ -1,8 +1,7 @@
 ---
 import Template from "./_template.astro";
 import type { Props } from "./_template.astro";
-import { BUSINESS } from "../../data/business";
-import { formatPhoneForDisplay } from "../../utils/phone";
+import { BUSINESS, phone_display, phone_e164 } from "../../data/business";
 
 const page: Props = {
   title: "24/7 emergency snow removal in Chicago",
@@ -41,7 +40,7 @@ const page: Props = {
   ],
 };
 
-const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
+const phoneDisplay = phone_display;
 ---
 <Template {...page}>
   <section>
@@ -52,11 +51,11 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
     </p>
     <p>
       Call the emergency snow removal hotline at
-      <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> to connect directly with dispatch, or tap the button below to send
+      <a href={`tel:${phone_e164}`}>{phoneDisplay}</a> to connect directly with dispatch, or tap the button below to send
       project details.
     </p>
     <p>
-      <a class="cta" href={`tel:${BUSINESS.phone}`}>Call {phoneDisplay}</a>
+      <a class="cta" href={`tel:${phone_e164}`}>Call {phoneDisplay}</a>
     </p>
   </section>
   <section class="support-links">

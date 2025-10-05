@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import SEO from "../../components/SEO.astro";
 import JsonLd from "../../components/JsonLd.astro";
-import { BUSINESS } from "../../data/business";
+import { BUSINESS, phone_e164 } from "../../data/business";
 
 type FAQ = {
   question: string;
@@ -47,7 +47,7 @@ const localBusinessSchema = {
   "@type": ["LocalBusiness", "ServiceAreaBusiness"],
   "@id": `${BUSINESS.site}/#business`,
   name: BUSINESS.name,
-  telephone: BUSINESS.phone,
+  telephone: phone_e164,
   email: BUSINESS.email,
   url: BUSINESS.site,
   areaServed: [schemaLocation, ...BUSINESS.areasServed.filter((areaName) => areaName !== schemaLocation)],

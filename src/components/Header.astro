@@ -1,17 +1,16 @@
 ---
-import { BUSINESS } from "../data/business";
-import { formatPhoneForDisplay } from "../utils/phone";
+import { BUSINESS, phone_display, phone_e164 } from "../data/business";
 
 const { address } = BUSINESS;
 const locationLabel = [address.city, address.region].filter(Boolean).join(", ");
-const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
+const phoneDisplay = phone_display;
 ---
 <header class="site-header">
   <div class="top-bar">
     <div class="container">
       <p class="service-area">Serving {locationLabel}</p>
       <div class="contact-links">
-        <a class="contact-link" href={`tel:${BUSINESS.phone}`}>
+        <a class="contact-link" href={`tel:${phone_e164}`}>
           <span class="label">Call</span>
           <span>{phoneDisplay}</span>
         </a>
@@ -33,7 +32,7 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
           <li><a href="/contact/">Contact</a></li>
         </ul>
       </nav>
-      <a class="cta" href={`tel:${BUSINESS.phone}`}>Call {phoneDisplay}</a>
+      <a class="cta" href={`tel:${phone_e164}`}>Call {phoneDisplay}</a>
     </div>
   </div>
 </header>

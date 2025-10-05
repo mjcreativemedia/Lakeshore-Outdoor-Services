@@ -1,8 +1,7 @@
 ---
 import Template from "./_template.astro";
 import type { Props } from "./_template.astro";
-import { BUSINESS } from "../../data/business";
-import { formatPhoneForDisplay } from "../../utils/phone";
+import { BUSINESS, phone_display, phone_e164 } from "../../data/business";
 
 const page: Props = {
   title: "Roseland snow removal for residential corridors",
@@ -48,7 +47,7 @@ const page: Props = {
       question: "Who should I call if I need extra passes?",
       answer:
         "Contact dispatch or submit the emergency form when lake-effect bands rebuild snow piles.",
-      answerHtml: `<p>Contact dispatch at <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or submit the <a href="/services/emergency-snow-removal/">emergency form</a> when lake-effect bands rebuild snow piles.</p>`,
+      answerHtml: `<p>Contact dispatch at <a href="tel:${phone_e164}">${phone_display}</a> or submit the <a href="/services/emergency-snow-removal/">emergency form</a> when lake-effect bands rebuild snow piles.</p>`,
     },
   ],
 };

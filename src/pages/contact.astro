@@ -2,14 +2,13 @@
 import Base from "../layouts/Base.astro";
 import SEO from "../components/SEO.astro";
 import JsonLd from "../components/JsonLd.astro";
-import { BUSINESS } from "../data/business";
-import { formatPhoneForDisplay } from "../utils/phone";
+import { BUSINESS, phone_display, phone_e164 } from "../data/business";
 
 const title = "Request a snow removal quote";
 const description =
   "Connect with Lakeshore Outdoor Services for Chicago snow removal pricing. Call our team or send the form for a tailored seasonal or per-event quote.";
 const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
-const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
+const phoneDisplay = phone_display;
 const businessAddress = {
   "@type": "PostalAddress",
   addressLocality: BUSINESS.address.city,
@@ -22,7 +21,7 @@ const schema: Record<string, unknown> = {
   "@type": ["LocalBusiness", "ServiceAreaBusiness"],
   "@id": `${BUSINESS.site}/#business`,
   name: BUSINESS.name,
-  telephone: BUSINESS.phone,
+  telephone: phone_e164,
   email: BUSINESS.email,
   url: canonical,
   description,
@@ -40,7 +39,7 @@ const schema: Record<string, unknown> = {
       <p>
         We’re a Chicago-based service-area business serving Hyde Park, South Shore, Bronzeville, Roseland, Pullman, Altgeld
         Gardens, Lakeview, Lincoln Park, Evanston, Wilmette, and Winnetka. Call us at
-        <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> or share the details below and we'll follow up with a custom snow
+        <a href={`tel:${phone_e164}`}>{phoneDisplay}</a> or share the details below and we'll follow up with a custom snow
         removal quote.
       </p>
     </header>
