@@ -1,0 +1,104 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
+
+const page: Props = {
+  title: "Roseland snow removal for residential corridors",
+  description:
+    "Snow plowing, shoveling, and ice control for Roseland’s residential streets, cul-de-sacs, and church campuses along Michigan Avenue, 111th Street, and the Cottage Grove corridor.",
+  serviceName: "Roseland snow removal",
+  city: "Chicago",
+  area: "Roseland",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Explore snow removal services",
+      description: "Review our seasonal contracts and per-event coverage for Chicago communities.",
+    },
+    {
+      href: "/services/emergency-snow-removal/",
+      label: "Emergency crews",
+      description: "Reach standby teams when drifting snow traps vehicles or closes church lots.",
+    },
+    {
+      href: "/contact/",
+      label: "Schedule a Roseland site visit",
+      description: "Share driveway layouts, alleys, and sidewalk priorities before winter arrives.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Can you manage cul-de-sacs and long driveways?",
+      answer:
+        "Yes. We assign compact plows and skid steers to navigate Roseland’s cul-de-sacs and deeper driveways off Michigan Avenue.",
+    },
+    {
+      question: "Do you work with schools and churches?",
+      answer:
+        "We maintain parking lots and accessible ramps for churches, daycares, and charter schools along 111th Street and King Drive.",
+    },
+    {
+      question: "How do you handle freeze-thaw cycles?",
+      answer:
+        "Our crews return for spot treatments when melting snow refreezes overnight, especially near viaducts and shaded sidewalks.",
+    },
+    {
+      question: "Who should I call if I need extra passes?",
+      answer:
+        "Contact dispatch or submit the emergency form when lake-effect bands rebuild snow piles.",
+      answerHtml: `<p>Contact dispatch at <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or submit the <a href="/services/emergency-snow-removal/">emergency form</a> when lake-effect bands rebuild snow piles.</p>`,
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Neighborhood routes designed for Roseland</h2>
+    <p>
+      We map every driveway, alley, and sidewalk around Fernwood Park, Palmer Park, and the nearby Pullman National Historical
+      Park. Our crews navigate the one-way residential streets between Wentworth and State, coordinating with residents to move
+      vehicles before storms hit.
+    </p>
+    <p>
+      Shovel teams focus on stoops, gangways, and ADA ramps so seniors, commuters, and students can reach CTA buses and the Metra
+      Electric line without slipping.
+    </p>
+  </section>
+  <section>
+    <h2>Trusted support for community institutions</h2>
+    <p>
+      Roseland’s churches, schools, and social service centers require reliable access during weather emergencies. We stage
+      equipment near 111th Street to keep Sunday services on schedule and ensure food pantry deliveries reach their loading docks.
+    </p>
+    <p>
+      Digital service logs provide timestamps, photos, and material notes so facility managers can document compliance and budget
+      for future seasons.
+    </p>
+  </section>
+  <section>
+    <h2>Continuous monitoring throughout each storm</h2>
+    <p>
+      Dispatchers watch Midway Airport radar, IDOT road sensors, and local alerts to time return visits. When the wind shifts off
+      Lake Michigan and drifts form along Cottage Grove, we deploy additional crews from our South Side yard to reopen lanes and
+      sidewalks quickly.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>

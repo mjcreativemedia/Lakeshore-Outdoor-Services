@@ -18,14 +18,36 @@ const page: Props = {
       description: "Learn how we protect North Side properties with proactive monitoring and detailed shovel work.",
     },
     {
+      href: "/services/emergency-snow-removal/",
+      label: "Request emergency help",
+      description: "Activate standby crews when snowdrifts block alleys or storefronts.",
+    },
+    {
       href: "/contact/",
       label: "Schedule a site walk",
       description: "Meet a supervisor to review your parking pads, alleys, and stairways before the next storm.",
     },
   ],
+  faqs: [
+    {
+      question: "Do you coordinate with building managers?",
+      answer:
+        "Yes. We provide storm updates and arrival windows to property managers, ensuring elevators, loading docks, and dumpster pads stay accessible.",
+    },
+    {
+      question: "Can you help with rooftop or deck shoveling?",
+      answer:
+        "We offer rooftop snow clearing when needed to prevent weight buildup and drain blockages. Mention it during your quote request so we can plan extra manpower.",
+      answerHtml: `<p>We offer rooftop snow clearing when needed to prevent weight buildup and drain blockages. Mention it during your <a href="/contact/">quote request</a> so we can plan extra manpower.</p>`,
+    },
+    {
+      question: "Who do I call for urgent service?",
+      answer:
+        "Reach our dispatch team anytime by phone or submit the emergency snow removal request to jump the line during heavy storms.",
+      answerHtml: `<p>Reach our dispatch team anytime at <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or submit the <a href="/services/emergency-snow-removal/">emergency snow removal</a> request to jump the line during heavy storms.</p>`,
+    },
+  ],
 };
-
-const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
 ---
 <Template {...page}>
   <section>
@@ -40,30 +62,6 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
       <li>Ice melt applications that balance speed with surface protection</li>
     </ul>
   </section>
-  <section class="faq">
-    <h2>Lincoln Park FAQs</h2>
-    <details>
-      <summary>Do you coordinate with building managers?</summary>
-      <p>
-        Yes. We provide storm updates and arrival windows to property managers, ensuring elevators, loading docks, and dumpster
-        pads stay accessible.
-      </p>
-    </details>
-    <details>
-      <summary>Can you help with rooftop or deck shoveling?</summary>
-      <p>
-        We offer rooftop snow clearing when needed to prevent weight buildup and drain blockages. Let us know during your
-        <a href="/contact/">quote request</a> so we can plan extra manpower.
-      </p>
-    </details>
-    <details>
-      <summary>Who do I call for urgent service?</summary>
-      <p>
-        Reach our dispatch team anytime at <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> or submit the
-        <a href="/services/emergency-snow-removal/">emergency snow removal</a> request to jump the line during heavy storms.
-      </p>
-    </details>
-  </section>
 </Template>
 
 <style>
@@ -77,20 +75,5 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
     margin: 0;
     display: grid;
     gap: 0.5rem;
-  }
-
-  .faq details {
-    background: #f8fafc;
-    border-radius: 0.75rem;
-    padding: 1rem 1.25rem;
-  }
-
-  .faq summary {
-    cursor: pointer;
-    font-weight: 600;
-  }
-
-  .faq p {
-    margin-top: 0.75rem;
   }
 </style>

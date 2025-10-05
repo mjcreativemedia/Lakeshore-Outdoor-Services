@@ -1,0 +1,102 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
+
+const page: Props = {
+  title: "Wilmette snow removal for lakefront suburbs",
+  description:
+    "Professional snow plowing, shoveling, and ice control for Wilmette homes, estates, and downtown storefronts from Sheridan Road to Green Bay Road.",
+  serviceName: "Wilmette snow removal",
+  city: "Wilmette",
+  area: "Wilmette",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Explore snow removal services",
+      description: "Learn how we support Chicago and North Shore properties with proactive winter programs.",
+    },
+    {
+      href: "/services/emergency-snow-removal/",
+      label: "Emergency snow response",
+      description: "Call when lake-effect squalls or ice storms overwhelm your regular crew.",
+    },
+    {
+      href: "/contact/",
+      label: "Request a Wilmette quote",
+      description: "Send driveway, walkway, and parking details so we can design a seasonal plan.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Do you handle lakefront estates and long driveways?",
+      answer:
+        "Yes. We use truck-mounted plows, loaders, and snow blowers sized for private drives along Sheridan Road and Michigan Avenue.",
+    },
+    {
+      question: "Can you protect bluestone and brick walkways?",
+      answer:
+        "We apply pet-safe calcium blends and hand-shovel delicate surfaces to prevent etching or joint damage.",
+    },
+    {
+      question: "Do you service Metra lots and downtown storefronts?",
+      answer:
+        "We clear commuter parking, alley loading zones, and Central Street storefront sidewalks before the morning rush.",
+    },
+    {
+      question: "How do I reach emergency dispatch?",
+      answer:
+        "Call or submit the emergency snow removal form for immediate support.",
+      answerHtml: `<p>Call <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or submit the <a href="/services/emergency-snow-removal/">emergency snow removal form</a> for immediate support.</p>`,
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>North Shore crews ready for every storm</h2>
+    <p>
+      Wilmette’s lakefront exposure creates wind-driven snow drifts and icy spray along Sheridan Road and Lake Avenue. We monitor
+      shoreline weather stations to time pre-salting and dispatch crews before morning commutes.
+    </p>
+    <p>
+      Our teams maintain residences, condo associations, and downtown businesses near the Baha’i House of Worship, Gillson Park,
+      and the Village Center.
+    </p>
+  </section>
+  <section>
+    <h2>Tailored equipment for varied properties</h2>
+    <p>
+      We pair truck plows and loaders for large estates with walk-behind blowers and shoveling teams for tight courtyard homes.
+      Heated entry mats, gutters, and drainage points are inspected to prevent refreeze.
+    </p>
+    <p>
+      For commercial properties, we coordinate with property managers to maintain parking lots, alley deliveries, and stairwells
+      leading to offices and restaurants.
+    </p>
+  </section>
+  <section>
+    <h2>Detailed reporting keeps owners informed</h2>
+    <p>
+      After each event, clients receive a digital service log summarizing snowfall totals, start and end times, and materials used.
+      Photos are available on request to document compliance for HOA boards and insurance carriers.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>

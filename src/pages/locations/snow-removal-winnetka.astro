@@ -1,0 +1,101 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
+
+const page: Props = {
+  title: "Winnetka snow removal for estate properties",
+  description:
+    "Comprehensive snow plowing, shoveling, and salting for Winnetka estates, village streets, and business districts along Green Bay Road, Elm Street, and Sheridan Road.",
+  serviceName: "Winnetka snow removal",
+  city: "Winnetka",
+  area: "Winnetka",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Explore snow removal services",
+      description: "Review our Chicago and North Shore programs for residential, HOA, and commercial clients.",
+    },
+    {
+      href: "/services/emergency-snow-removal/",
+      label: "Emergency response",
+      description: "Call when lake-effect systems or ice storms exceed your regular route capacity.",
+    },
+    {
+      href: "/contact/",
+      label: "Request a Winnetka consultation",
+      description: "Share driveway lengths, private lanes, and walkways so we can tailor equipment and crews.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Do you service private lanes and shared drives?",
+      answer:
+        "Yes. We maintain private lanes throughout Indian Hill, Hubbard Woods, and Sheridan Road enclaves with loaders and compact plows.",
+    },
+    {
+      question: "Can you clear lakefront stairways and terraces?",
+      answer:
+        "We deploy shovel teams with safety harnesses and low-corrosion de-icers to protect stone steps, decks, and lake bluff paths.",
+    },
+    {
+      question: "How do you support downtown businesses?",
+      answer:
+        "We schedule sidewalk shoveling and salting before shoppers arrive on Lincoln Avenue, Elm Street, and Chestnut Street.",
+    },
+    {
+      question: "How can I reach a manager during storms?",
+      answer:
+        "Call dispatch or submit the emergency snow removal form for immediate assistance.",
+      answerHtml: `<p>Call dispatch at <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or submit the <a href="/services/emergency-snow-removal/">emergency snow removal form</a> for immediate assistance.</p>`,
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Prepared for Winnetka’s demanding winters</h2>
+    <p>
+      Lakefront winds, tree-lined streets, and long private drives require strategic snow management. We stage crews across the
+      village to respond quickly as storms move inland from Lake Michigan.
+    </p>
+    <p>
+      Seasonal clients rely on us for repeated passes, snow relocation, and documentation needed for HOA boards and estate managers.
+    </p>
+  </section>
+  <section>
+    <h2>Equipment tailored to estate properties</h2>
+    <p>
+      Large estates and private schools benefit from loaders, skid steers, and sidewalk crews that keep garages, service courts,
+      and athletic facilities accessible. We protect heated driveway systems, granite pavers, and decorative lighting from damage.
+    </p>
+    <p>
+      For village streets and commuter parking, we coordinate with municipal schedules to clear curb cuts, train station lots, and
+      pedestrian paths before sunrise.
+    </p>
+  </section>
+  <section>
+    <h2>Communication keeps everyone aligned</h2>
+    <p>
+      Each visit generates a digital report detailing snow totals, materials used, and follow-up recommendations. During extended
+      storms, managers receive ETA updates and photos confirming that entrances, mail kiosks, and fire hydrants remain open.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>

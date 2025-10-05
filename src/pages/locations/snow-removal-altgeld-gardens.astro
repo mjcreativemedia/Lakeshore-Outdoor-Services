@@ -1,0 +1,105 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
+
+const page: Props = {
+  title: "Altgeld Gardens snow removal for community campuses",
+  description:
+    "Snow plowing, shoveling, and de-icing for the Altgeld Gardens and Phillip Murray Homes community, including residential courts, schools, and community centers near the Calumet River.",
+  serviceName: "Altgeld Gardens snow removal",
+  city: "Chicago",
+  area: "Altgeld Gardens",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Explore snow removal services",
+      description: "See how we manage seasonal, per-event, and emergency coverage for Chicago neighborhoods.",
+    },
+    {
+      href: "/services/emergency-snow-removal/",
+      label: "Emergency response",
+      description: "Activate crews when drifting snow blocks cul-de-sacs or community center entrances.",
+    },
+    {
+      href: "/contact/",
+      label: "Request an Altgeld plan",
+      description: "Share court layouts, parking areas, and accessibility needs before the next storm.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Do you maintain shared courts and alleys?",
+      answer:
+        "Yes. We plow residential courts, shared driveways, and alleys connecting to 130th Street and Doty Avenue.",
+    },
+    {
+      question: "Can you support schools and community centers?",
+      answer:
+        "We keep the Childcare Center, library, and schools accessible with clear ramps, loading zones, and bus pick-up areas.",
+    },
+    {
+      question: "How do you manage ice near the Calumet River?",
+      answer:
+        "We monitor temperature swings and use liquid brine plus eco-friendly pellets to prevent refreeze on bridges and riverfront paths.",
+    },
+    {
+      question: "How do residents reach dispatch?",
+      answer:
+        "Call our office or submit the emergency snow removal request if an area needs immediate attention.",
+      answerHtml: `<p>Call our office at <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or submit the <a href="/services/emergency-snow-removal/">emergency snow removal request</a> if an area needs immediate attention.</p>`,
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Community-focused snow coverage</h2>
+    <p>
+      Altgeld Gardens spans wide residential courts and pedestrian paths that require coordinated snow removal. We map each court
+      to assign the right equipment—compact plows for drive lanes and shovel teams for building entrances and stairwells.
+    </p>
+    <p>
+      Crews also clear key connectors to 130th Street, Stony Island Avenue, and the Bishop Ford Expressway so residents can commute
+      safely during winter storms.
+    </p>
+  </section>
+  <section>
+    <h2>Safe access for services and programs</h2>
+    <p>
+      We maintain access to community anchors including the Altgeld Gardens Library, Childcare Center, and the Carver Park campus.
+      Salting and shoveling schedules are coordinated around food distribution times, after-school programs, and athletic events.
+    </p>
+    <p>
+      Service logs help resident associations document compliance and secure funding for continued winter maintenance.
+    </p>
+  </section>
+  <section>
+    <h2>Monitoring challenging microclimates</h2>
+    <p>
+      The nearby Calumet River and wetlands can create dense fog and slick surfaces. We monitor local sensors and reapply de-icer
+      when freezing rain or river moisture adds a glaze to sidewalks and ramps.
+    </p>
+    <p>
+      Seasonal clients receive updates via text or email, including photos if crews identify drainage issues or snow piles that
+      need relocation.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>

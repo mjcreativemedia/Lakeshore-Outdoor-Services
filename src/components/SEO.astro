@@ -12,19 +12,21 @@ export interface Props {
 const { title, description, canonical, type = "website", image } = Astro.props;
 const siteUrl = BUSINESS.site;
 const url = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const brand = BUSINESS.name;
+const formattedTitle = title.includes(brand) ? title : `${title} | ${brand}`;
 ---
 <Fragment>
-  <title>{title}</title>
+  <title>{formattedTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={url} />
   <meta property="og:type" content={type} />
-  <meta property="og:title" content={title} />
+  <meta property="og:title" content={formattedTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={url} />
   <meta property="og:site_name" content={BUSINESS.name} />
   {image && <meta property="og:image" content={image} />}
   <meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
-  <meta name="twitter:title" content={title} />
+  <meta name="twitter:title" content={formattedTitle} />
   <meta name="twitter:description" content={description} />
   {image && <meta name="twitter:image" content={image} />}
 </Fragment>

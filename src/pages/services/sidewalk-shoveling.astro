@@ -1,0 +1,119 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+
+const page: Props = {
+  title: "Chicago sidewalk shoveling crews",
+  description:
+    "Dedicated sidewalk, stair, and entry shoveling teams serving Chicago neighborhoods from Bronzeville and Pullman to Lakeview and Evanston.",
+  serviceName: "Sidewalk shoveling",
+  city: "Chicago",
+  internalLinks: [
+    {
+      href: "/services/",
+      label: "All winter services",
+      description: "Bundle sidewalk labor with plowing, salting, and emergency response.",
+    },
+    {
+      href: "/locations/snow-removal-bronzeville/",
+      label: "Bronzeville snow removal",
+      description: "See how we protect 47th Street businesses and historic greystones.",
+    },
+    {
+      href: "/locations/snow-removal-evanston/",
+      label: "Evanston winter support",
+      description: "Discover shovel plans tailored to campus housing and downtown storefronts.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Do crews clear steps and porches too?",
+      answer:
+        "<p>Yes. We shovel stoops, basement stairs, wheelchair ramps, and loading docks so residents and customers have a safe approach.</p>",
+    },
+    {
+      question: "How early can you arrive?",
+      answer:
+        "<p>Routes begin as early as 3 a.m. so high-traffic sidewalks are clear before breakfast service and school drop-off.</p>",
+    },
+    {
+      question: "Will you shovel during lake-effect bursts?",
+      answer:
+        "<p>We offer return visits when narrow snow bands linger over the South Shore or Rogers Park. Crews cycle back as accumulation rebuilds.</p>",
+    },
+    {
+      question: "Can you help with compliance notices?",
+      answer:
+        "<p>Our service logs include timestamps and photos so you can prove timely clearing to the City of Chicago or neighborhood associations.</p>",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Hand crews dedicated to people-first pathways</h2>
+    <p>
+      Chicago ordinances require sidewalks cleared within hours of each snowfall. We build shoveling teams specifically for
+      pedestrian areas—school zones, transit stops, senior housing, and storefront corridors. Crews rotate through Bronzeville,
+      South Shore, Pullman, and Hyde Park during heavy events, focusing on corners where plows leave windrows and where residents
+      need extra assistance.
+    </p>
+    <p>
+      Sidewalk leads coordinate with our plow dispatch center so driveways and walks finish simultaneously. That means customers
+      can step from the curb onto a treated surface, and delivery drivers have a direct path to service doors and freight
+      elevators.
+    </p>
+  </section>
+  <section>
+    <h2>Detailed attention for stairs, ramps, and entries</h2>
+    <p>
+      We use ergonomic shovels, snow blowers, and battery-powered brushes sized for Chicago brownstone stoops and limestone steps
+      along Drexel Boulevard. Crews apply ice melt by hand along railings and tuck-in areas so thawing water doesn’t refreeze into
+      slick patches. For busy CTA stations and apartment lobbies, we can stage attendants to maintain mats and mop up slush during
+      peak hours.
+    </p>
+    <p>
+      Our teams also support North Side business districts, clearing patios and multi-tenant entryways along Clark Street, Halsted,
+      and Broadway. In Evanston, we keep University classrooms, research facilities, and student residences accessible even during
+      finals week storms.
+    </p>
+    <p>
+      For Pullman row homes and industrial corridors, we adapt workflows to historic brick sidewalks and loading docks where
+      machinery cannot reach. Sanding is available for pavers or granite surfaces that require extra traction.
+    </p>
+  </section>
+  <section>
+    <h2>Communication that keeps you compliant</h2>
+    <p>
+      Each shoveling event ends with a digital report noting arrival times, weather conditions, and any obstructions we cleared.
+      That documentation helps property managers respond to city inspectors or insurance adjusters. If we spot icy gutter
+      discharge or damaged downspouts, we flag the issue so maintenance teams can intervene before the next storm.
+    </p>
+    <p>
+      We also coordinate with building engineers to manage rooftop melt and basement stair drains. When lake-effect systems stall
+      over the South Side, we deploy extra crews from our Calumet staging area to keep ADA ramps open at schools, churches, and
+      community centers.
+    </p>
+    <p>
+      Seasonal clients receive text alerts when crews are en route and completion notices once surfaces are clear. Need on-demand
+      help after volunteer shovelers fall behind? We offer emergency dispatch during prolonged storms, with crews ready to serve
+      Bronzeville art corridors, Pullman National Historical Park, and the Evanston lakefront.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>

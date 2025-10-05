@@ -1,0 +1,119 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+
+const page: Props = {
+  title: "Chicago seasonal snow removal contracts",
+  description:
+    "Lock in season-long snow and ice management with guaranteed dispatch for Chicago neighborhoods and suburbs including South Shore, Roseland, Pullman, Wilmette, and Winnetka.",
+  serviceName: "Seasonal snow contracts",
+  city: "Chicago",
+  internalLinks: [
+    {
+      href: "/services/",
+      label: "All winter services",
+      description: "Bundle contracts with salting, sidewalk shoveling, and emergency call-outs.",
+    },
+    {
+      href: "/locations/snow-removal-roseland/",
+      label: "Roseland snow removal",
+      description: "See how we protect South Side cul-de-sacs, churches, and commercial lots.",
+    },
+    {
+      href: "/locations/snow-removal-winnetka/",
+      label: "Winnetka winter coverage",
+      description: "Explore North Shore programs designed for private drives and estate homes.",
+    },
+  ],
+  faqs: [
+    {
+      question: "What does a seasonal contract include?",
+      answer:
+        "<p>Plans cover automatic dispatch at your trigger depth, plowing, sidewalk shoveling, and standard salting. You receive post-service reports after every storm.</p>",
+    },
+    {
+      question: "Can I customize trigger depths by surface?",
+      answer:
+        "<p>Yes. Many clients choose one-inch triggers for walks and two-inch triggers for driveways or lots. We document preferences during onboarding.</p>",
+    },
+    {
+      question: "How are extreme storms handled?",
+      answer:
+        "<p>When blizzards exceed contracted inches, we keep clearing until your property is accessible. Additional pushes are billed at pre-agreed rates.</p>",
+    },
+    {
+      question: "Do you offer multi-year agreements?",
+      answer:
+        "<p>We provide one-, two-, and three-year contracts with price protections for clients who want long-term planning.</p>",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Predictable coverage for unpredictable winters</h2>
+    <p>
+      Chicago winters swing from lake-effect dustings to blizzards that shut down Lake Shore Drive. Seasonal contracts guarantee
+      you a crew no matter how the forecast evolves. We map every property before the first flake, identifying snow storage areas,
+      slip hazards, and special requests like priority entrances or loading docks.
+    </p>
+    <p>
+      Contracts span November through April and include preseason site walks, route planning, and onboarding for building staff.
+      Our dispatchers monitor O'Hare and Midway radar, plus shoreline sensors that track lake-effect bands moving into South Shore,
+      Bronzeville, Pullman, and Evanston.
+    </p>
+    <p>
+      Each client receives a custom storm plan showing start times, crew assignments, and escalation contacts. That means property
+      managers and HOA boards know exactly who to call during overnight events.
+    </p>
+  </section>
+  <section>
+    <h2>Flexible triggers and communication</h2>
+    <p>
+      Seasonal programs are designed around your operations. Residential estates in Winnetka might request a one-inch trigger to
+      keep heated driveways spotless, while Roseland churches prioritize accessibility for Sunday services. We can stage sidewalk
+      teams to arrive ahead of plows so parishioners and employees reach entrances safely.
+    </p>
+    <p>
+      Communication is constant: clients receive text or email alerts when storms are imminent, when crews depart, and when service
+      is complete. Digital logs include snow totals, photos, and materials applied. If municipal plows push snow back onto your
+      aprons, we add a return visit without delay.
+    </p>
+    <p>
+      For mixed-use developments, we coordinate with onsite engineers to keep loading docks open and to monitor rooftop drains.
+      Our crews check catch basins, hydrants, and emergency exits to meet Chicago Fire Department compliance rules.
+    </p>
+  </section>
+  <section>
+    <h2>Budget confidence and proactive planning</h2>
+    <p>
+      Seasonal pricing spreads winter costs evenly across monthly invoices, helping condo associations and commercial landlords plan
+      budgets. Multi-year agreements lock in labor and equipment, ensuring the same crew leads return each year. We also reserve
+      backup equipment at our South Side and North Shore yards so we can respond to equipment failures without missing a beat.
+    </p>
+    <p>
+      After winter, we debrief each route, noting opportunities for off-season grading or drainage improvements. Those insights help
+      reduce ice buildup around ADA ramps, trash enclosures, and parking lot entrances before the next snowfall.
+    </p>
+    <p>
+      Ready to secure coverage? Our team can review site plans, past service logs, and compliance notices to build a contract that
+      keeps your Chicago property operating smoothly through the harshest winter stretches.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>

@@ -1,0 +1,118 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+
+const page: Props = {
+  title: "Chicago salting and de-icing services",
+  description:
+    "Proactive salting and liquid de-icing routes that keep Chicago driveways, walks, and storefronts safe from Hyde Park to the North Shore.",
+  serviceName: "Salting and de-icing",
+  city: "Chicago",
+  internalLinks: [
+    {
+      href: "/services/",
+      label: "All winter services",
+      description: "See how salting pairs with plowing, sidewalk shoveling, and emergency response.",
+    },
+    {
+      href: "/locations/snow-removal-south-shore/",
+      label: "South Shore snow removal",
+      description: "Learn how lake-effect ice is handled along 71st Street and Jeffrey Boulevard.",
+    },
+    {
+      href: "/locations/snow-removal-wilmette/",
+      label: "Wilmette winter coverage",
+      description: "Explore North Shore salting plans tailored to Sheridan Road homes and storefronts.",
+    },
+  ],
+  faqs: [
+    {
+      question: "What ice melt products do you use?",
+      answer:
+        "<p>We stock a range of chlorides, including treated rock salt for roadways and calcium blends for delicate concrete. Crews select materials based on surface type, temperature, and proximity to landscaped beds.</p>",
+    },
+    {
+      question: "Can you pre-treat before a storm?",
+      answer:
+        "<p>Yes. When conditions allow, we apply liquid brine six to twelve hours ahead of snowfall so snow and sleet release easily during the first pass.</p>",
+    },
+    {
+      question: "How do you protect pets and plants?",
+      answer:
+        "<p>We flag sensitive areas during the preseason walkthrough and use pet-safe products or sand where necessary. All materials are applied precisely to avoid overspreading onto turf or shrub beds.</p>",
+    },
+    {
+      question: "Is salting available as a stand-alone service?",
+      answer:
+        "<p>We prioritize bundled clients, but one-time treatments are available when storms create dangerous refreeze conditions. Call dispatch to check availability for your neighborhood.</p>",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Keep surfaces open during Chicago cold snaps</h2>
+    <p>
+      Lake-effect bursts and Arctic fronts can flash-freeze pavement within minutes. Our de-icing crews patrol city and suburban
+      routes every time pavement temperatures dip toward the teens. We stage salt bins in Hyde Park alleys, load brine tanks near
+      Bronzeville condo corridors, and coordinate with plow teams so each site stays accessible for residents and deliveries.
+    </p>
+    <p>
+      Every route starts with preseason calibration. We document square footage, identify shaded areas prone to black ice, and
+      mark hazards like basement stairwells or retaining walls. When storms hit, that data guides our team so material is spread
+      evenly without damaging masonry or landscaping.
+    </p>
+  </section>
+  <section>
+    <h2>Equipment sized for tight lots and busy corridors</h2>
+    <p>
+      Chicago’s mix of two-flats, courtyard buildings, and historic storefronts demands nimble equipment. Our operators run tailgate
+      spreaders on half-ton trucks for alleys, walk-behind drop spreaders for narrow gangways, and ATV-mounted units for large
+      apartment complexes. Liquid brine rigs sit on dispatch-ready trailers so we can pre-treat arterial routes before the morning
+      commute.
+    </p>
+    <p>
+      On the North Shore, we adapt coverage for brick pavers along Central Street, school campuses near Wilmette Avenue, and
+      lakefront drives exposed to wind-driven spray. Operators document every pass with GPS and send service logs to HOA boards or
+      property managers before sunrise.
+    </p>
+    <p>
+      South Side routes focus on community corridors like Stony Island Avenue and 75th Street. We coordinate with local businesses
+      so sidewalks stay clear for commuters heading to the Metra Electric or CTA Red Line stations.
+    </p>
+  </section>
+  <section>
+    <h2>Season-long monitoring prevents refreeze</h2>
+    <p>
+      Our meteorologists monitor National Weather Service briefings, Midway Airport readings, and shoreline temperature sensors to
+      anticipate freeze-thaw cycles. After a storm, crews return for touch-up applications when meltwater flows back across
+      driveways or when shaded walks along Drexel Boulevard retain slush. We also offer bucketed material for onsite staff so they
+      can treat problem spots between scheduled visits.
+    </p>
+    <p>
+      When temperatures plunge below zero, we switch to magnesium or calcium blends that remain active in extreme cold. These
+      treatments are ideal for elevated entrances at hospitals, schools, and churches that cannot tolerate slick steps during
+      weekend services or early classes.
+    </p>
+    <p>
+      Documentation is delivered after every call-out, including weather notes, product types, and before-and-after photos when
+      requested. These records simplify insurance reporting and demonstrate due diligence for Chicago’s slip-and-fall ordinances.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>
