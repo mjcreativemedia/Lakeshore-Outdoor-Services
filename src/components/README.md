@@ -2,7 +2,7 @@
 
 ## Open Graph image workflow
 
-The default Open Graph image is generated on-demand by the `/og/` endpoint (`src/pages/og/index.astro`). The handler builds an SVG layout with `createOgSvg` and rasterizes it to PNG pixels via `rasterizeSvgToPng`, which wraps [`sharp`](https://sharp.pixelplumbing.com/). Requests can override copy by providing `title`, `subtitle`, `tagline`, or `contact` query parameters. All responses are cached for a day with immutable caching headers.
+The default Open Graph image is generated on-demand by the `/og/` endpoint (`src/pages/og/index.astro`). The handler builds an SVG layout with `createOgSvg` and rasterizes it to PNG pixels via `rasterizeSvgToPng`, which wraps [`@resvg/resvg-js`](https://github.com/yisibl/resvg-js). Requests can override copy by providing `title`, `subtitle`, `tagline`, or `contact` query parameters. All responses are cached for a day with immutable caching headers.
 
 `SEO.astro` automatically points `og:image` and `twitter:image` to this endpoint when no custom `image` prop is provided, ensuring every page exposes a PNG asset sized `1200x630`.
 

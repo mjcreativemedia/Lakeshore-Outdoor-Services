@@ -10,7 +10,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "sharp": "^0.33.5"
+    "@resvg/resvg-js": "^2.4.0"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.1.3",

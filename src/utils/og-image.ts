@@ -1,3 +1,4 @@
+import { Resvg } from "@resvg/resvg-js";
 import { BUSINESS } from "../data/business";
 
 export const OG_IMAGE_WIDTH = 1200;
@@ -14,7 +15,8 @@ export interface OgImageOptions {
 }
 
 export interface RasterizeOptions {
-  density?: number;
+  background?: string;
+  scale?: number;
 }
 
 const escapeHtml = (value: string): string =>
@@ -157,15 +159,19 @@ export const createOgSvg = ({
 </svg>`;
 };
 
-export const rasterizeSvgToPng = async (svg: string, options: RasterizeOptions = {}): Promise<Buffer> => {
-  const { density = 260 } = options;
-  const { default: sharp } = await import("sharp");
+export const rasterizeSvgToPng = async (
+  svg: string,
+  options: RasterizeOptions = {},
+): Promise<Buffer> => {
+  const { background = "rgba(0, 0, 0, 0)", scale = 1 } = options;
 
-  return sharp(Buffer.from(svg), { density })
-    .png({
-      compressionLevel: 9,
-      adaptiveFiltering: true,
-      force: true,
-    })
-    .toBuffer();
+  const renderer = new Resvg(svg, {
+    background,
+    fitTo: scale === 1 ? { mode: "original" } : { mode: "zoom", value: scale },
+    fonts: {
+      loadSystemFonts: true,
+    },
+  });
+
+  return Buffer.from(renderer.render().asPng());
 };
