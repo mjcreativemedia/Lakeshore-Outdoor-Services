@@ -1,0 +1,88 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+
+const page: Props = {
+  title: "Snow removal in Lake Forest, IL",
+  description:
+    "Season-long snow plowing and sidewalk clearing for Lake Forest homes and estates. Stay safe with proactive weather monitoring and on-call crews.",
+  serviceName: "Residential snow removal",
+  city: "Lake Forest",
+  internalLinks: [
+    {
+      href: "/contact/",
+      label: "Request a seasonal snow quote",
+      description: "Lock in priority service for storms before lake-effect snow hits.",
+    },
+    {
+      href: "/services/ice-dam-removal/",
+      label: "Ice dam removal services",
+      description: "Protect your roofline when heavy snow leads to refreezing and leaks.",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Trusted winter maintenance for the North Shore</h2>
+    <p>
+      Our Lake Forest routes are staffed around-the-clock during snow events. From circular drives to private walks, we tailor the
+      plan to your property and adjust routes in real time as conditions change.
+    </p>
+    <ul>
+      <li>Seasonal contracts with automatic dispatch</li>
+      <li>Handwork on stairs, walks, and patios included</li>
+      <li>Deicing with eco-friendly melting agents</li>
+    </ul>
+  </section>
+  <section class="faq">
+    <h2>Lake Forest snow removal FAQs</h2>
+    <details>
+      <summary>How early do you start plowing?</summary>
+      <p>
+        Crews mobilize before accumulation hits two inches. We monitor NOAA and private weather feeds to pre-salt surfaces when ice is expected.
+      </p>
+    </details>
+    <details>
+      <summary>Can you clear large estate driveways?</summary>
+      <p>
+        Absolutely. Our fleet includes heavy-duty plow trucks and skid steers capable of managing long driveways and motor courts common in Lake Forest.
+      </p>
+    </details>
+    <details>
+      <summary>Do you offer one-time snow pushes?</summary>
+      <p>
+        Yes, one-time pushes are available as schedule allows. Contact us early to reserve a spot during peak storm windows.
+      </p>
+    </details>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .faq details {
+    background: #f8fafc;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .faq p {
+    margin-top: 0.75rem;
+  }
+</style>

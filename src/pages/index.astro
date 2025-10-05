@@ -1,0 +1,113 @@
+---
+import Base from "../layouts/Base.astro";
+import SEO from "../components/SEO.astro";
+import JsonLd from "../components/JsonLd.astro";
+import { business } from "../data/business";
+
+const title = `${business.name} | North Shore snow removal`;
+const description = "Premium residential snow removal, ice dam steaming, and winter maintenance for Lake Forest and the North Shore.";
+const canonical = new URL(Astro.url.pathname, business.site).toString();
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SnowRemovalService",
+  name: business.name,
+  url: canonical,
+  description,
+  areaServed: {
+    "@type": "AdministrativeArea",
+    name: business.address.city,
+  },
+  provider: {
+    "@type": "LocalBusiness",
+    name: business.name,
+    telephone: business.phone,
+    email: business.email,
+    url: business.site,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: business.address.street,
+      addressLocality: business.address.city,
+      addressRegion: business.address.region,
+      postalCode: business.address.postal,
+      addressCountry: business.address.country,
+    },
+  },
+};
+---
+<Base title={title}>
+  <SEO title={title} description={description} canonical={canonical} type="website" />
+  <JsonLd schema={schema} />
+  <section class="hero">
+    <h1>Reliable snow removal for Lake Forest homes</h1>
+    <p>
+      {business.name} keeps driveways, walks, and roofs clear with proactive monitoring, fast dispatch, and detail-focused crews.
+      From seasonal contracts to emergency ice dam steaming, we tailor service around your property.
+    </p>
+    <div class="actions">
+      <a class="primary" href="/contact/">Get a snow quote</a>
+      <a class="secondary" href="/services/ice-dam-removal/">Explore our services</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    margin: 0 auto;
+    max-width: 760px;
+    padding: 4rem 1.5rem;
+    display: grid;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 5vw, 3.25rem);
+    margin: 0;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #1f2937;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .primary,
+  .secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .primary {
+    background: #2563eb;
+    color: #fff;
+  }
+
+  .secondary {
+    border: 2px solid #2563eb;
+    color: #1d4ed8;
+    background: transparent;
+  }
+
+  .primary:hover,
+  .primary:focus {
+    background: #1d4ed8;
+  }
+
+  .secondary:hover,
+  .secondary:focus {
+    border-color: #1d4ed8;
+    color: #1e3a8a;
+  }
+</style>

@@ -1,0 +1,127 @@
+---
+import Base from "../layouts/Base.astro";
+import SEO from "../components/SEO.astro";
+import JsonLd from "../components/JsonLd.astro";
+import { business } from "../data/business";
+
+const title = "Get a snow quote";
+const description = "Request fast snow removal pricing from Lakeshore Outdoor Services. Call us or send the form to get a tailored estimate.";
+const canonical = new URL(Astro.url.pathname, business.site).toString();
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: business.name,
+  telephone: business.phone,
+  email: business.email,
+  url: canonical,
+  description,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: business.address.street,
+    addressLocality: business.address.city,
+    addressRegion: business.address.region,
+    postalCode: business.address.postal,
+    addressCountry: business.address.country,
+  },
+};
+---
+<Base title={title}>
+  <SEO title={`${title} | ${business.name}`} description={description} canonical={canonical} type="LocalBusiness" />
+  <JsonLd schema={schema} />
+  <section class="contact">
+    <header>
+      <h1>{title}</h1>
+      <p>
+        We respond to most requests within one business day. Call us at
+        <a href={`tel:${business.phone}`}>{business.phone}</a> or share the details below and we'll follow up with a custom snow removal quote.
+      </p>
+    </header>
+    <form action="https://formspree.io/f/placeholder" method="POST" class="form">
+      <input type="hidden" name="_redirect" value={`${business.site}/thank-you/`} />
+      <label>
+        <span>Name</span>
+        <input type="text" name="name" required autocomplete="name" />
+      </label>
+      <label>
+        <span>Phone</span>
+        <input type="tel" name="phone" required autocomplete="tel" />
+      </label>
+      <label>
+        <span>Service address</span>
+        <input type="text" name="address" required autocomplete="street-address" />
+      </label>
+      <label>
+        <span>Project details</span>
+        <textarea name="message" rows="5" required placeholder="Tell us about your property and snow challenges"></textarea>
+      </label>
+      <button type="submit">Request my quote</button>
+    </form>
+  </section>
+</Base>
+
+<style>
+  .contact {
+    margin: 0 auto;
+    max-width: 720px;
+    padding: 3rem 1.5rem;
+    display: grid;
+    gap: 2rem;
+  }
+
+  header h1 {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    margin-bottom: 0.5rem;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #1f2937;
+  }
+
+  header a {
+    font-weight: 600;
+  }
+
+  .form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  label {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #cbd5f5;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #fff;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  button {
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #2563eb;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  button:hover,
+  button:focus {
+    background: #1d4ed8;
+  }
+</style>

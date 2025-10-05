@@ -1,0 +1,56 @@
+---
+import Base from "../layouts/Base.astro";
+import SEO from "../components/SEO.astro";
+import { business } from "../data/business";
+
+const title = "Thanks for reaching out";
+const description = "We've received your snow service request and will contact you shortly.";
+const canonical = new URL(Astro.url.pathname, business.site).toString();
+---
+<Base title={title}>
+  <SEO title={`${title} | ${business.name}`} description={description} canonical={canonical} />
+  <section class="thank-you">
+    <h1>{title}</h1>
+    <p>
+      A member of the {business.name} team will be in touch soon. If your need is urgent, feel free to call us at
+      <a href={`tel:${business.phone}`}>{business.phone}</a>.
+    </p>
+    <a class="cta" href="/">Back to home</a>
+  </section>
+</Base>
+
+<style>
+  .thank-you {
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 3rem 1.5rem;
+    display: grid;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .thank-you h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+  }
+
+  .thank-you p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .cta {
+    display: inline-block;
+    align-self: center;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .cta:hover,
+  .cta:focus {
+    background: #1d4ed8;
+  }
+</style>

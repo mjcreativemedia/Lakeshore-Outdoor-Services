@@ -1,0 +1,120 @@
+---
+import Base from "../../layouts/Base.astro";
+import SEO from "../../components/SEO.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import { business } from "../../data/business";
+
+export interface Props {
+  title: string;
+  description: string;
+  serviceName: string;
+  city: string;
+  area?: string;
+  internalLinks?: Array<{ href: string; label: string; description?: string }>;
+}
+
+const { title, description, serviceName, city, area, internalLinks = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, business.site).toString();
+const locationName = `${city}${area ? `, ${area}` : ""}`;
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: business.name,
+  description,
+  telephone: business.phone,
+  email: business.email,
+  url: canonical,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: business.address.street,
+    addressLocality: business.address.city,
+    addressRegion: business.address.region,
+    postalCode: business.address.postal,
+    addressCountry: business.address.country,
+  },
+  areaServed: {
+    "@type": "AdministrativeArea",
+    name: locationName,
+  },
+  makesOffer: {
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: serviceName,
+      description,
+    },
+  },
+};
+---
+<Base title={title}>
+  <SEO title={title} description={description} canonical={canonical} type="LocalBusiness" />
+  <JsonLd schema={localBusinessSchema} />
+  <article class="content">
+    <header>
+      <p class="eyebrow">Serving {locationName}</p>
+      <h1>{title}</h1>
+      <p class="lead">{description}</p>
+    </header>
+    <slot />
+    {internalLinks.length > 0 && (
+      <section class="internal-links">
+        <h2>Plan your next step</h2>
+        <ul>
+          {internalLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+              {link.description && <p>{link.description}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+</Base>
+
+<style>
+  .content {
+    margin: 0 auto;
+    max-width: 720px;
+    padding: 3rem 1.5rem;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.875rem;
+    color: #475569;
+    margin: 0;
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #1f2937;
+  }
+
+  .internal-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .internal-links li {
+    background: #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+
+  .internal-links a {
+    font-weight: 600;
+  }
+
+  .internal-links p {
+    margin: 0.5rem 0 0;
+    color: #1f2937;
+  }
+</style>
