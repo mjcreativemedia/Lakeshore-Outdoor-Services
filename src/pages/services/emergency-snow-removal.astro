@@ -1,18 +1,19 @@
 ---
 import Template from "./_template.astro";
 import type { Props } from "./_template.astro";
-import { business } from "../../data/business";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
 
 const page: Props = {
   title: "Emergency Snow Removal (24/7 Dispatch) — Lakeshore Outdoor Services",
   description:
-    "Round-the-clock emergency snow plowing and shoveling across Chicagoland. Call anytime to clear surprise drifts or reopen blocked access.",
+    "Round-the-clock emergency snow plowing and shoveling across Chicago neighborhoods including Hyde Park, South Shore, Bronzeville, Lakeview, and Lincoln Park.",
   serviceName: "Emergency snow removal",
   city: "Chicago",
   internalLinks: [
     {
       href: "/services/snow-removal/",
-      label: "Chicagoland snow removal services",
+      label: "Chicago snow removal services",
       description: "See our ongoing programs for seasonal and per-push coverage.",
     },
     {
@@ -22,6 +23,8 @@ const page: Props = {
     },
   ],
 };
+
+const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
 ---
 <Template {...page}>
   <section>
@@ -32,11 +35,11 @@ const page: Props = {
     </p>
     <p>
       Call the emergency snow removal hotline at
-      <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> to connect directly with dispatch, or tap the button below to
-      send project details.
+      <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> to connect directly with dispatch, or tap the button below to send
+      project details.
     </p>
     <p>
-      <a class="cta" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+      <a class="cta" href={`tel:${BUSINESS.phone}`}>Call {phoneDisplay}</a>
     </p>
   </section>
   <section class="faq">
@@ -44,7 +47,7 @@ const page: Props = {
     <details>
       <summary>How fast can a crew arrive?</summary>
       <p>
-        We target arrival within 90 minutes inside the city and North Shore, weather and road conditions permitting. We’ll
+        We target arrival within 90 minutes inside the city and lakefront suburbs, weather and road conditions permitting. We’ll
         confirm ETA when you call so you know exactly when help is coming.
       </p>
     </details>
@@ -68,7 +71,8 @@ const page: Props = {
     <p>
       Add yourself to our seasonal roster to secure guaranteed service on the next snowfall. Explore the
       <a href="/services/snow-removal/">snow removal programs</a> or see local coverage in
-      <a href="/locations/snow-removal-lakeview/">Lakeview</a> and <a href="/locations/snow-removal-lincoln-park/">Lincoln Park</a>.
+      <a href="/locations/snow-removal-hyde-park/">Hyde Park</a>, <a href="/locations/snow-removal-lakeview/">Lakeview</a>, and
+      <a href="/locations/snow-removal-lincoln-park/">Lincoln Park</a>.
     </p>
   </section>
 </Template>

@@ -1,60 +1,63 @@
 ---
 import Template from "./_template.astro";
 import type { Props } from "./_template.astro";
-import { business } from "../../data/business";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
 
 const page: Props = {
-  title: "Snow Removal in Lake County — Estates, Drives & Walkways",
+  title: "Snow Removal in Evanston — Residential & Small Commercial",
   description:
-    "Comprehensive snow plowing, shoveling, and ice management for Lake County homes and small businesses with long drives or private roads.",
-  serviceName: "Lake County snow removal",
-  city: "Lake County",
+    "Comprehensive snow plowing, shoveling, and ice management for Evanston homes, multifamily buildings, and storefronts.",
+  serviceName: "Evanston snow removal",
+  city: "Evanston",
   internalLinks: [
     {
       href: "/services/snow-removal/",
       label: "Discover our snow removal services",
-      description: "From seasonal contracts to emergency pushes, we cover Chicagoland and the North Shore.",
+      description: "From seasonal contracts to emergency pushes, we cover Chicago and North Shore communities.",
     },
     {
       href: "/contact/",
-      label: "Plan your Lake County route",
+      label: "Plan your Evanston route",
       description: "Tell us about your driveway layout, sidewalks, and special considerations for a custom quote.",
     },
   ],
 };
+
+const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
 ---
 <Template {...page}>
   <section>
-    <h2>Lake County coverage without the wait</h2>
+    <h2>Evanston coverage without the wait</h2>
     <p>
-      Our teams service communities from Highland Park to Libertyville, maintaining large estate drives and neighborhood HOA
-      routes. Dispatchers adjust timing for lake-effect bands and keep you updated when plows are en route.
+      Our teams service neighborhoods from Main Street to Central Street, maintaining residential driveways, alleys, and
+      commercial walkways. Dispatchers adjust timing for lake-effect bands and keep you updated when plows are en route.
     </p>
     <ul>
-      <li>Heavy-duty trucks and loaders for long drives and cul-de-sacs</li>
-      <li>Shovel crews for patios, walkways, and porch steps</li>
+      <li>Compact trucks and skid steers for tight alleys and parking pads</li>
+      <li>Shovel crews for sidewalks, stoops, and accessible ramps</li>
       <li>Granular and liquid de-icing options based on surface type</li>
     </ul>
   </section>
   <section class="faq">
-    <h2>Lake County FAQs</h2>
+    <h2>Evanston FAQs</h2>
     <details>
       <summary>What snowfall depth triggers service?</summary>
       <p>
         Most seasonal plans trigger at two inches, with pre-salting when freezing rain is in the forecast. We can adjust depth to
-        match HOA bylaws.
+        match village requirements or HOA bylaws.
       </p>
     </details>
     <details>
-      <summary>Can you clear private roads or shared drives?</summary>
+      <summary>Can you clear private alleys or shared drives?</summary>
       <p>
-        Yes. We operate equipment sized for long private drives and shared easements, coordinating with neighbors as needed.
+        Yes. We operate equipment sized for shared easements and coordinate with neighbors as needed to keep everyone moving.
       </p>
     </details>
     <details>
       <summary>How do I request priority support?</summary>
       <p>
-        Call <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> to reach dispatch directly or submit the
+        Call <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> to reach dispatch directly or submit the
         <a href="/services/emergency-snow-removal/">emergency snow removal form</a> for urgent pushes.
       </p>
     </details>

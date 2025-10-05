@@ -1,47 +1,58 @@
 ---
 import Base from "../../layouts/Base.astro";
 import SEO from "../../components/SEO.astro";
-import { business } from "../../data/business";
+import { BUSINESS } from "../../data/business";
 
 const title = "Snow removal locations";
-const description = "See Lakeshore Outdoor Services coverage across Chicago, Lakeview, Lincoln Park, and Lake County.";
-const canonical = new URL(Astro.url.pathname, business.site).toString();
-const locations = [
-  {
-    href: "/locations/snow-removal-chicago/",
-    name: "Chicago",
-    summary: "North Side and North Shore routes with plowing, shoveling, and de-icing crews.",
-  },
-  {
-    href: "/locations/snow-removal-lakeview/",
-    name: "Lakeview",
-    summary: "Alley, driveway, and sidewalk service tailored to dense residential blocks.",
-  },
-  {
-    href: "/locations/snow-removal-lincoln-park/",
-    name: "Lincoln Park",
-    summary: "Snow clearing for brownstones, condos, and neighborhood retail corridors.",
-  },
-  {
-    href: "/locations/snow-removal-lake-county/",
-    name: "Lake County",
-    summary: "Large estate and HOA service covering the North Shore suburbs.",
-  },
-];
+const description = "See Lakeshore Outdoor Services coverage across Chicago’s lakefront neighborhoods and nearby North Shore communities.";
+const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
+const areaPageMap = new Map<string, string>([
+  ["Hyde Park", "/locations/snow-removal-hyde-park/"],
+  ["Lakeview", "/locations/snow-removal-lakeview/"],
+  ["Lincoln Park", "/locations/snow-removal-lincoln-park/"],
+  ["Evanston", "/locations/snow-removal-evanston/"],
+]);
+
+const areaSummaries: Record<string, string> = {
+  "Hyde Park": "University-area homes, institutions, and condo buildings near the lakefront.",
+  "South Shore": "Lakefront residences, condos, and cultural sites needing careful walkway clearing.",
+  "Bronzeville": "Greystones, brownstones, and mixed-use blocks along the Cottage Grove corridor.",
+  "Roseland": "Single-family homes and small businesses along Michigan Avenue and 111th Street.",
+  "Pullman": "Historic rowhomes and industrial campuses requiring reliable snow staging.",
+  "Altgeld Gardens": "Townhome communities and campus-style developments on the Far South Side.",
+  "Lakeview": "Dense North Side blocks with alleys, shared drives, and busy retail corridors.",
+  "Lincoln Park": "Rowhouses, mid-rises, and storefronts along Clark, Halsted, and Armitage.",
+  "Evanston": "North Shore residences, schools, and small businesses near transit and lakefront routes.",
+  "Wilmette": "Residential streets, lakefront estates, and village retail centers.",
+  "Winnetka": "Estate drives, private lanes, and community institutions across the North Shore.",
+};
+
+const areas = BUSINESS.areasServed.map((area) => ({
+  name: area,
+  href: areaPageMap.get(area) ?? null,
+  summary: areaSummaries[area] ?? "",
+}));
 ---
 <Base title={title}>
-  <SEO title={`${title} | ${business.name}`} description={description} canonical={canonical} type="website" />
+  <SEO title={`${title} | ${BUSINESS.name}`} description={description} canonical={canonical} type="website" />
   <section class="listing">
     <header>
       <h1>{title}</h1>
       <p>{description}</p>
+      <p class="note">
+        Looking for our citywide overview? Visit the <a href="/locations/snow-removal-chicago/">Chicago snow removal page</a>.
+      </p>
     </header>
     <ul>
-      {locations.map((location) => (
+      {areas.map((area) => (
         <li>
-          <h2><a href={location.href}>{location.name}</a></h2>
-          <p>{location.summary}</p>
-          <a class="cta" href={location.href}>View location</a>
+          {area.href ? <h2><a href={area.href}>{area.name}</a></h2> : <h2>{area.name}</h2>}
+          {area.summary && <p>{area.summary}</p>}
+          {area.href && (
+            <a class="cta" href={area.href} aria-label={`View snow removal service details for ${area.name}`}>
+              View area details
+            </a>
+          )}
         </li>
       ))}
     </ul>
@@ -51,7 +62,7 @@ const locations = [
 <style>
   .listing {
     margin: 0 auto;
-    max-width: 720px;
+    max-width: 960px;
     padding: 3rem 1.5rem;
     display: grid;
     gap: 2rem;
@@ -63,6 +74,7 @@ const locations = [
     padding: 0;
     display: grid;
     gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 
   li {
@@ -87,5 +99,10 @@ const locations = [
   .cta:hover,
   .cta:focus {
     background: #1d4ed8;
+  }
+
+  .note {
+    margin: 0;
+    font-weight: 600;
   }
 </style>

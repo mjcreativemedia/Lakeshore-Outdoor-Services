@@ -2,83 +2,104 @@
 import Base from "../layouts/Base.astro";
 import SEO from "../components/SEO.astro";
 import JsonLd from "../components/JsonLd.astro";
-import { business } from "../data/business";
+import { BUSINESS } from "../data/business";
+import { formatPhoneForDisplay } from "../utils/phone";
 
-const title = `${business.name} | Chicagoland snow removal`;
-const description = "Reliable residential and light commercial snow removal, de-icing, and winter maintenance across Chicagoland.";
-const canonical = new URL(Astro.url.pathname, business.site).toString();
-const { address, serviceAreas } = business;
-const hasStreet = address.street.trim().length > 0;
-const hasPostal = address.postal.trim().length > 0;
-const businessAddress = hasStreet
-  ? {
-      "@type": "PostalAddress",
-      streetAddress: address.street,
-      addressLocality: address.city,
-      addressRegion: address.region,
-      ...(hasPostal ? { postalCode: address.postal } : {}),
-      addressCountry: address.country,
-    }
-  : {
-      "@type": "PostalAddress",
-      addressLocality: address.city,
-      addressRegion: address.region,
-      addressCountry: address.country,
-    };
+const title = `${BUSINESS.name} | Chicago snow removal crews`;
+const description =
+  "Chicago-based snow removal pros serving Hyde Park, South Shore, Bronzeville, Lakeview, Lincoln Park, Evanston, and nearby neighborhoods.";
+const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
+const { address, areasServed } = BUSINESS;
+const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
+const businessAddress = {
+  "@type": "PostalAddress",
+  addressLocality: address.city,
+  addressRegion: address.region,
+  addressCountry: address.country,
+};
 
 const schema: Record<string, unknown> = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://lakeshoreoutdoor.com/#business",
-  name: business.name,
+  "@type": ["LocalBusiness", "ServiceAreaBusiness"],
+  "@id": `${BUSINESS.site}/#business`,
+  name: BUSINESS.name,
   description,
   url: canonical,
-  telephone: business.phone,
-  email: business.email,
+  telephone: BUSINESS.phone,
+  email: BUSINESS.email,
   address: businessAddress,
-  areaServed: serviceAreas,
+  areaServed: areasServed,
   sameAs: [],
 };
-// TODO: Add GBP and Facebook profile URLs to sameAs once available.
+
+const displayAreas = areasServed;
 ---
 <Base title={title}>
   <SEO title={title} description={description} canonical={canonical} type="website" />
   <JsonLd schema={schema} />
   <section class="hero">
-    <h1>Reliable snow removal for Chicagoland homes &amp; small businesses</h1>
+    <h1>Snow removal for Chicago’s south and north lakefront communities</h1>
     <p>
-      {business.name} keeps driveways, sidewalks, and entryways clear with proactive storm monitoring, fast dispatch, and
-      detail-focused crews. From seasonal contracts to emergency response, we tailor service around each property and keep you
-      moving all winter long.
+      {BUSINESS.name} is a Chicago-based service-area business. We keep driveways, sidewalks, alleys, and storefront entries
+      clear across Hyde Park, South Shore, Bronzeville, Lakeview, Lincoln Park, Evanston, and the neighboring communities
+      listed below. Crews monitor winter storms 24/7 and coordinate with you before, during, and after each visit.
     </p>
     <div class="actions">
-      <a class="primary" href="/contact/">Get a snow quote</a>
-      <a class="secondary" href="/services/">Explore our services</a>
+      <a class="primary" href="/contact/">Request a quote</a>
+      <a class="secondary" href={`tel:${BUSINESS.phone}`}>Call {phoneDisplay}</a>
     </div>
-    <a class="call-now" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+    <div class="quick-links">
+      <a href="/services/snow-removal/">Snow removal programs</a>
+      <a href="/services/ice-dam-removal/">Ice dam removal</a>
+      <a href="/services/emergency-snow-removal/">Emergency dispatch</a>
+      <a href="/locations/">View service areas</a>
+      <a href="/locations/snow-removal-chicago/">Chicago crews</a>
+      <a href="/locations/snow-removal-hyde-park/">Hyde Park team</a>
+      <a href="/locations/snow-removal-lakeview/">Lakeview routes</a>
+      <a href="/locations/snow-removal-lincoln-park/">Lincoln Park coverage</a>
+      <a href="/locations/snow-removal-evanston/">Evanston crews</a>
+    </div>
   </section>
   <section class="services">
-    <h2>Winter services built for Chicagoland weather</h2>
+    <h2>Winter services for homes, small businesses, and community properties</h2>
     <p>
-      We handle plowing, shoveling, de-icing, and roof steaming so you can focus on your family or business. Each route includes
-      handwork for walkways and stairs, real-time communication during storms, and post-event cleanup.
+      We handle plowing, shoveling, de-icing, and roof steaming so you can stay focused on family or operations. Every route
+      includes handwork for walkways and stairs, proactive communication, and detailed follow-up after each storm.
     </p>
     <ul>
-      <li>Seasonal residential snow plowing</li>
-      <li>Sidewalk and walkway shoveling</li>
-      <li>De-icing for drives, stoops, and storefronts</li>
-      <li>Ice dam monitoring and steaming</li>
+      <li>Seasonal and per-event snow plowing with flexible trigger depths</li>
+      <li>Sidewalk and stoop shoveling tailored to dense city blocks</li>
+      <li>Calcium chloride, treated salt, and brine options for safe de-icing</li>
+      <li>Steam-based ice dam removal to protect roofs and gutters</li>
     </ul>
   </section>
   <section class="areas">
-    <h2>Areas we cover</h2>
-    <p>We operate as a service-area business covering much of the North Shore and nearby suburbs.</p>
+    <h2>Service-area coverage</h2>
+    <p>
+      We operate without a public storefront and bring mobile crews to each neighborhood we serve. Explore detailed location
+      pages to learn how we support your block.
+    </p>
     <ul>
-      <li><a href="/locations/snow-removal-chicago/">Chicago</a></li>
-      <li><a href="/locations/snow-removal-lakeview/">Lakeview</a></li>
-      <li><a href="/locations/snow-removal-lincoln-park/">Lincoln Park</a></li>
-      <li><a href="/locations/snow-removal-lake-county/">Lake County</a></li>
+      {displayAreas.map((area) => {
+        const slug = area.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+        const hasPage = [
+          "chicago",
+          "hyde-park",
+          "lakeview",
+          "lincoln-park",
+          "evanston",
+        ].includes(slug);
+        const href = hasPage ? `/locations/snow-removal-${slug}/` : "/locations/";
+        return (
+          <li>
+            <a href={href}>{area}</a>
+          </li>
+        );
+      })}
     </ul>
+    <p class="view-more">
+      Looking for another neighborhood? See the full list on our <a href="/locations/">locations page</a>.
+    </p>
   </section>
 </Base>
 
@@ -143,21 +164,25 @@ const schema: Record<string, unknown> = {
     color: #1e3a8a;
   }
 
-  .call-now {
-    display: inline-flex;
-    align-self: center;
+  .quick-links {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    padding: 0.75rem 1.5rem;
-    border-radius: 999px;
-    background: #0f172a;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
+    gap: 0.75rem;
   }
 
-  .call-now:hover,
-  .call-now:focus {
-    background: #0b1220;
+  .quick-links a {
+    background: #e2e8f0;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #0f172a;
+  }
+
+  .quick-links a:hover,
+  .quick-links a:focus {
+    background: #cbd5f5;
   }
 
   .services,
@@ -196,5 +221,16 @@ const schema: Record<string, unknown> = {
   .areas a:hover,
   .areas a:focus {
     background: #cbd5f5;
+  }
+
+  .view-more {
+    text-align: center;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .hero p {
+      font-size: 1.05rem;
+    }
   }
 </style>

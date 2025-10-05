@@ -1,6 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
-import { business } from "../data/business";
+import { BUSINESS } from "../data/business";
+import { formatPhoneForDisplay } from "../utils/phone";
+
+const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
 ---
 <Base
   title="Thanks — we got your request"
@@ -12,8 +15,8 @@ import { business } from "../data/business";
   <h1>Thanks! We’ll reach out shortly.</h1>
   <p>
     Our team received your request. If this is urgent, call
-    <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> or email
-    <a href={`mailto:${business.email}`}>{business.email}</a>.
+    <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> or email
+    <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>.
   </p>
   <p><a href="/">Back to home</a></p>
 </Base>

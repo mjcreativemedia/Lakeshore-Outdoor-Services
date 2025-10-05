@@ -1,5 +1,5 @@
 ---
-import { business } from "../data/business";
+import { BUSINESS } from "../data/business";
 
 export interface Props {
   title: string;
@@ -10,7 +10,7 @@ export interface Props {
 }
 
 const { title, description, canonical, type = "website", image } = Astro.props;
-const siteUrl = business.site;
+const siteUrl = BUSINESS.site;
 const url = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 ---
 <Fragment>
@@ -21,7 +21,7 @@ const url = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={url} />
-  <meta property="og:site_name" content={business.name} />
+  <meta property="og:site_name" content={BUSINESS.name} />
   {image && <meta property="og:image" content={image} />}
   <meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
   <meta name="twitter:title" content={title} />

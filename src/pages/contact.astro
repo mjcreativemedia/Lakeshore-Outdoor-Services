@@ -2,57 +2,46 @@
 import Base from "../layouts/Base.astro";
 import SEO from "../components/SEO.astro";
 import JsonLd from "../components/JsonLd.astro";
-import { business } from "../data/business";
+import { BUSINESS } from "../data/business";
+import { formatPhoneForDisplay } from "../utils/phone";
 
 const title = "Get a snow quote";
-const description = "Request fast snow removal pricing from Lakeshore Outdoor Services. Call us or send the form to get a tailored estimate.";
-const canonical = new URL(Astro.url.pathname, business.site).toString();
-const { address, serviceAreas } = business;
-const hasStreet = address.street.trim().length > 0;
-const hasPostal = address.postal.trim().length > 0;
-const businessAddress = hasStreet
-  ? {
-      "@type": "PostalAddress",
-      streetAddress: address.street,
-      addressLocality: address.city,
-      addressRegion: address.region,
-      ...(hasPostal ? { postalCode: address.postal } : {}),
-      addressCountry: address.country,
-    }
-  : {
-      "@type": "PostalAddress",
-      addressLocality: address.city,
-      addressRegion: address.region,
-      addressCountry: address.country,
-    };
+const description =
+  "Request fast snow removal pricing from Lakeshore Outdoor Services. Call us or send the form to get a tailored estimate.";
+const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
+const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
+const businessAddress = {
+  "@type": "PostalAddress",
+  addressLocality: BUSINESS.address.city,
+  addressRegion: BUSINESS.address.region,
+  addressCountry: BUSINESS.address.country,
+};
 
 const schema: Record<string, unknown> = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": `${business.site}/#business`,
-  name: business.name,
-  telephone: business.phone,
-  email: business.email,
+  "@type": ["LocalBusiness", "ServiceAreaBusiness"],
+  "@id": `${BUSINESS.site}/#business`,
+  name: BUSINESS.name,
+  telephone: BUSINESS.phone,
+  email: BUSINESS.email,
   url: canonical,
   description,
   address: businessAddress,
+  areaServed: BUSINESS.areasServed,
   sameAs: [],
 };
-
-if (!hasStreet) {
-  schema.areaServed = serviceAreas;
-}
 ---
 <Base title={title}>
-  <SEO title={`${title} | ${business.name}`} description={description} canonical={canonical} type="LocalBusiness" />
+  <SEO title={`${title} | ${BUSINESS.name}`} description={description} canonical={canonical} type="LocalBusiness" />
   <JsonLd schema={schema} />
   <section class="contact">
     <header>
       <h1>{title}</h1>
       <p>
-        We respond to most requests within one business day. Call us at
-        <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> or share the details below and we'll follow up with a custom
-        snow removal quote.
+        We’re a Chicago-based service-area business serving Hyde Park, South Shore, Bronzeville, Roseland, Pullman, Altgeld
+        Gardens, Lakeview, Lincoln Park, Evanston, Wilmette, and Winnetka. Call us at
+        <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> or share the details below and we'll follow up with a custom snow
+        removal quote.
       </p>
     </header>
     <form action="https://formspree.io/f/your-form-id" method="POST" class="form">

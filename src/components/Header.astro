@@ -1,28 +1,30 @@
 ---
-import { business } from "../data/business";
+import { BUSINESS } from "../data/business";
+import { formatPhoneForDisplay } from "../utils/phone";
 
-const { address } = business;
+const { address } = BUSINESS;
 const locationLabel = [address.city, address.region].filter(Boolean).join(", ");
+const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
 ---
 <header class="site-header">
   <div class="top-bar">
     <div class="container">
       <p class="service-area">Serving {locationLabel}</p>
       <div class="contact-links">
-        <a class="contact-link" href={`tel:${business.phone}`}>
+        <a class="contact-link" href={`tel:${BUSINESS.phone}`}>
           <span class="label">Call</span>
-          <span>{business.phoneDisplay}</span>
+          <span>{phoneDisplay}</span>
         </a>
-        <a class="contact-link" href={`mailto:${business.email}`}>
+        <a class="contact-link" href={`mailto:${BUSINESS.email}`}>
           <span class="label">Email</span>
-          <span>{business.email}</span>
+          <span>{BUSINESS.email}</span>
         </a>
       </div>
     </div>
   </div>
   <div class="main-bar">
     <div class="container">
-      <a class="brand" href="/">{business.name}</a>
+      <a class="brand" href="/">{BUSINESS.name}</a>
       <nav aria-label="Main navigation">
         <ul>
           <li><a href="/">Home</a></li>
@@ -31,7 +33,7 @@ const locationLabel = [address.city, address.region].filter(Boolean).join(", ");
           <li><a href="/contact/">Contact</a></li>
         </ul>
       </nav>
-      <a class="cta" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+      <a class="cta" href={`tel:${BUSINESS.phone}`}>Call {phoneDisplay}</a>
     </div>
   </div>
 </header>

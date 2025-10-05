@@ -1,18 +1,27 @@
-export const business = {
+export const BUSINESS = {
   name: "Lakeshore Outdoor Services",
-  phone: "+17732366224",
-  phoneDisplay: "(773) 236-6224",
+  phone: "+1-773-236-6224",
   email: "lakeshoreoutdoorteam@gmail.com",
-  // We’ll operate as a service-area business on the site until we confirm a street address.
+  site: "https://lakeshoreoutdoor.com",
+  // service-area business => no street address
   address: {
-    street: "",
     city: "Chicago",
     region: "IL",
-    postal: "",
     country: "US",
   },
-  site: "https://lakeshoreoutdoor.com",
-  serviceAreas: ["Chicago", "Lake County", "North Shore", "Northwest Suburbs"],
+  areasServed: [
+    "Hyde Park",
+    "South Shore",
+    "Bronzeville",
+    "Roseland",
+    "Pullman",
+    "Altgeld Gardens",
+    "Lakeview",
+    "Lincoln Park",
+    "Evanston",
+    "Wilmette",
+    "Winnetka",
+  ],
 } as const;
 
-export type Business = typeof business;
+export type Business = typeof BUSINESS;
