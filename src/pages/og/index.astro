@@ -28,18 +28,30 @@ const svg = createOgSvg({
   brand: BUSINESS.name,
 });
 
-const png = await rasterizeSvgToPng(svg, {
-  scale: Number.isFinite(scaleParam) ? scaleParam : undefined,
-  background: backgroundParam?.length ? backgroundParam : undefined,
-  width: OG_IMAGE_WIDTH,
-  height: OG_IMAGE_HEIGHT,
-});
+try {
+  const png = await rasterizeSvgToPng(svg, {
+    scale: Number.isFinite(scaleParam) ? scaleParam : undefined,
+    background: backgroundParam?.length ? backgroundParam : undefined,
+    width: OG_IMAGE_WIDTH,
+    height: OG_IMAGE_HEIGHT,
+  });
 
-return new Response(png, {
-  headers: {
-    "Content-Type": "image/png",
-    "Content-Length": String(png.byteLength),
-    "Cache-Control": "public, max-age=86400, immutable",
-  },
-});
+  return new Response(png, {
+    headers: {
+      "Content-Type": "image/png",
+      "Content-Length": String(png.byteLength),
+      "Cache-Control": "public, max-age=86400, immutable",
+    },
+  });
+} catch (error) {
+  console.error("Failed to generate Open Graph image.", error);
+
+  return new Response("Failed to generate Open Graph image.", {
+    status: 500,
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=60",
+    },
+  });
+}
 ---

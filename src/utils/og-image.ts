@@ -211,15 +211,19 @@ export const rasterizeSvgToPng = async (
 
   const resvg = await loadResvg();
   if (resvg?.Resvg) {
-    const renderer = new resvg.Resvg(svg, {
-      background,
-      fitTo: scale === 1 ? { mode: "original" } : { mode: "zoom", value: scale },
-      fonts: {
-        loadSystemFonts: true,
-      },
-    });
+    try {
+      const renderer = new resvg.Resvg(svg, {
+        background,
+        fitTo: scale === 1 ? { mode: "original" } : { mode: "zoom", value: scale },
+        fonts: {
+          loadSystemFonts: true,
+        },
+      });
 
-    return Buffer.from(renderer.render().asPng());
+      return Buffer.from(renderer.render().asPng());
+    } catch (error) {
+      console.warn("Resvg rasterization failed, attempting sharp fallback.", error);
+    }
   }
 
   const sharp = await loadSharp();
