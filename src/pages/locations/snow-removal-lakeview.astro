@@ -1,7 +1,8 @@
 ---
 import Template from "./_template.astro";
 import type { Props } from "./_template.astro";
-import { business } from "../../data/business";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
 
 const page: Props = {
   title: "Snow Removal in Lakeview, Chicago — Driveways, Sidewalks & De-icing",
@@ -14,7 +15,7 @@ const page: Props = {
     {
       href: "/services/snow-removal/",
       label: "Explore our snow removal programs",
-      description: "Compare seasonal, per-push, and emergency options for Chicagoland properties.",
+      description: "Compare seasonal, per-push, and emergency options for Chicago properties.",
     },
     {
       href: "/contact/",
@@ -23,6 +24,8 @@ const page: Props = {
     },
   ],
 };
+
+const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
 ---
 <Template {...page}>
   <section>
@@ -55,7 +58,7 @@ const page: Props = {
     <details>
       <summary>How do I request emergency service?</summary>
       <p>
-        Call us at <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> or submit the <a href="/contact/">contact form</a>
+        Call us at <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> or submit the <a href="/contact/">contact form</a>
         to trigger our <a href="/services/emergency-snow-removal/">emergency snow removal team</a>.
       </p>
     </details>

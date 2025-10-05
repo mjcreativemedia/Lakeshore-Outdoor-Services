@@ -1,34 +1,30 @@
 ---
-import { business } from "../data/business";
+import { BUSINESS } from "../data/business";
+import { formatPhoneForDisplay } from "../utils/phone";
 
-const { address } = business;
-const hasStreet = address.street.trim().length > 0;
-const hasPostal = address.postal.trim().length > 0;
-const locationLine = [address.city, address.region, hasPostal ? address.postal : null]
-  .filter(Boolean)
-  .join(" ");
+const { address, areasServed } = BUSINESS;
+const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
+const primaryLocation = `${address.city}, ${address.region} • ${address.country}`;
+const featuredAreas = areasServed.slice(0, 6);
 ---
 <footer class="site-footer">
   <div class="container">
     <div>
-      <h2>{business.name}</h2>
+      <h2>{BUSINESS.name}</h2>
       <p>
-        <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a><br />
-        <a href={`mailto:${business.email}`}>{business.email}</a>
-      </p>
-      <address>
-        {hasStreet && (
-          <>
-            {address.street}
-            <br />
-          </>
-        )}
-        {locationLine}
+        <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a>
         <br />
-        {address.country}
-      </address>
+        <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
+      </p>
+      <p class="location">{primaryLocation}</p>
+      <p class="service-areas">
+        <span>Serving:</span>
+        <span class="area-list">{featuredAreas.join(", ")}</span>
+        <span aria-hidden="true">•</span>
+        <a href="/locations/" class="view-all">View all areas</a>
+      </p>
     </div>
-    <p class="copyright">&copy; {new Date().getFullYear()} {business.name}. All rights reserved.</p>
+    <p class="copyright">&copy; {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.</p>
   </div>
 </footer>
 
@@ -51,9 +47,40 @@ const locationLine = [address.city, address.region, hasPostal ? address.postal :
     color: inherit;
   }
 
-  address {
-    font-style: normal;
-    line-height: 1.5;
+  .location {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .service-areas {
+    margin: 0.5rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .service-areas span {
+    font-weight: 600;
+  }
+
+  .service-areas .area-list {
+    font-weight: 400;
+  }
+
+  .service-areas span[aria-hidden="true"] {
+    font-weight: 400;
+  }
+
+  .view-all {
+    text-decoration: none;
+    font-weight: 600;
+    color: #cbd5f5;
+  }
+
+  .view-all:hover,
+  .view-all:focus {
+    text-decoration: underline;
   }
 
   .copyright {

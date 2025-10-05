@@ -1,16 +1,17 @@
 ---
 import Base from "../../layouts/Base.astro";
 import SEO from "../../components/SEO.astro";
-import { business } from "../../data/business";
+import { BUSINESS } from "../../data/business";
 
 const title = "Snow and ice services";
-const description = "Browse Lakeshore Outdoor Services offerings for Chicagoland snow plowing, ice dam steaming, and emergency dispatch.";
-const canonical = new URL(Astro.url.pathname, business.site).toString();
+const description =
+  "Browse Lakeshore Outdoor Services offerings for Chicago-area snow plowing, ice dam steaming, and 24/7 emergency dispatch.";
+const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
 const services = [
   {
     href: "/services/snow-removal/",
     name: "Snow removal",
-    summary: "Seasonal and per-event plowing, shoveling, and de-icing for homes and small businesses.",
+    summary: "Seasonal and per-event plowing, shoveling, and de-icing for Chicago neighborhoods and nearby lakefront suburbs.",
   },
   {
     href: "/services/emergency-snow-removal/",
@@ -25,11 +26,20 @@ const services = [
 ];
 ---
 <Base title={title}>
-  <SEO title={`${title} | ${business.name}`} description={description} canonical={canonical} type="website" />
+  <SEO title={`${title} | ${BUSINESS.name}`} description={description} canonical={canonical} type="website" />
   <section class="listing">
     <header>
       <h1>{title}</h1>
       <p>{description}</p>
+      <p class="service-areas">Serving Hyde Park, South Shore, Bronzeville, Lakeview, Lincoln Park, Evanston, Wilmette, and more.</p>
+      <p class="locations-note">
+        See location specifics for
+        <a href="/locations/snow-removal-chicago/">Chicago</a>,
+        <a href="/locations/snow-removal-hyde-park/">Hyde Park</a>,
+        <a href="/locations/snow-removal-lakeview/">Lakeview</a>, and
+        <a href="/locations/snow-removal-lincoln-park/">Lincoln Park</a>, or view the
+        <a href="/locations/">full service-area list</a>.
+      </p>
     </header>
     <ul>
       {services.map((service) => (
@@ -82,5 +92,16 @@ const services = [
   .cta:hover,
   .cta:focus {
     background: #1d4ed8;
+  }
+
+  .service-areas {
+    margin: 0;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .locations-note {
+    margin: 0;
+    color: #1f2937;
   }
 </style>
