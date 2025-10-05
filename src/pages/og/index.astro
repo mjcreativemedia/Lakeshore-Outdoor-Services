@@ -1,0 +1,32 @@
+---
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
+import { createOgSvg, rasterizeSvgToPng } from "../../utils/og-image";
+
+export const prerender = false;
+
+const searchParams = Astro.url.searchParams;
+
+const title = searchParams.get("title")?.trim() || `${BUSINESS.name}`;
+const subtitle = searchParams.get("subtitle")?.trim() || "Snow & Ice Management for Chicago & the North Shore";
+const tagline = searchParams.get("tagline")?.trim() || "Plowing, salting, and sidewalk crews on call all winter";
+const contact = searchParams.get("contact")?.trim() || formatPhoneForDisplay(BUSINESS.phone);
+
+const svg = createOgSvg({
+  title,
+  subtitle,
+  tagline,
+  contact,
+  brand: BUSINESS.name,
+});
+
+const png = await rasterizeSvgToPng(svg);
+
+return new Response(png, {
+  headers: {
+    "Content-Type": "image/png",
+    "Content-Length": String(png.byteLength),
+    "Cache-Control": "public, max-age=86400, immutable",
+  },
+});
+---
