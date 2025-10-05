@@ -36,8 +36,20 @@ const schema = {
         <a href={`tel:${business.phone}`}>{business.phone}</a> or share the details below and we'll follow up with a custom snow removal quote.
       </p>
     </header>
-    <form action="https://formspree.io/f/placeholder" method="POST" class="form">
-      <input type="hidden" name="_redirect" value={`${business.site}/thank-you/`} />
+    <form action="https://formspree.io/f/your-form-id" method="POST" class="form">
+      <!-- Honeypot -->
+      <input
+        type="text"
+        name="company"
+        tabindex="-1"
+        autocomplete="organization"
+        style="position:absolute;left:-9999px"
+        aria-hidden="true"
+      />
+      <!-- Redirect after submit -->
+      <input type="hidden" name="_redirect" value="https://lakeshoreoutdoor.com/thank-you/" />
+      <!-- Form name to group leads in Formspree -->
+      <input type="hidden" name="_subject" value="Lakeshore Outdoor — New Lead" />
       <label>
         <span>Name</span>
         <input type="text" name="name" required autocomplete="name" />
