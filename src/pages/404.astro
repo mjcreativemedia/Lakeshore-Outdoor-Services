@@ -1,7 +1,16 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from "../layouts/Base.astro";
+import SEO from "../components/SEO.astro";
+import { BUSINESS } from "../data/business";
+
+const title = "Page not found";
+const seoTitle = `${title} | ${BUSINESS.name}`;
+const description =
+  "We couldn't find the page you were looking for. Explore Lakeshore Outdoor Services snow removal resources or contact us for quick help in Chicago.";
+const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
 ---
-<Base title="Page not found" description="This page doesn't exist.">
+<Base title={title} robots="noindex,follow">
+  <SEO title={seoTitle} description={description} canonical={canonical} type="website" />
   <h1>Not found</h1>
   <p>Try our <a href="/">homepage</a> or <a href="/contact/">contact us</a> for a quick quote.</p>
 </Base>
