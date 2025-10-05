@@ -1,7 +1,12 @@
 ---
 import { BUSINESS } from "../../data/business";
 import { formatPhoneForDisplay } from "../../utils/phone";
-import { createOgSvg, rasterizeSvgToPng } from "../../utils/og-image";
+import {
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_WIDTH,
+  createOgSvg,
+  rasterizeSvgToPng,
+} from "../../utils/og-image";
 
 export const prerender = false;
 
@@ -12,6 +17,9 @@ const subtitle = searchParams.get("subtitle")?.trim() || "Snow & Ice Management 
 const tagline = searchParams.get("tagline")?.trim() || "Plowing, salting, and sidewalk crews on call all winter";
 const contact = searchParams.get("contact")?.trim() || formatPhoneForDisplay(BUSINESS.phone);
 
+const scaleParam = Number(searchParams.get("scale"));
+const backgroundParam = searchParams.get("background")?.trim();
+
 const svg = createOgSvg({
   title,
   subtitle,
@@ -20,7 +28,12 @@ const svg = createOgSvg({
   brand: BUSINESS.name,
 });
 
-const png = await rasterizeSvgToPng(svg);
+const png = await rasterizeSvgToPng(svg, {
+  scale: Number.isFinite(scaleParam) ? scaleParam : undefined,
+  background: backgroundParam?.length ? backgroundParam : undefined,
+  width: OG_IMAGE_WIDTH,
+  height: OG_IMAGE_HEIGHT,
+});
 
 return new Response(png, {
   headers: {

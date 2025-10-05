@@ -1,4 +1,3 @@
-import { Resvg } from "@resvg/resvg-js";
 import { BUSINESS } from "../data/business";
 
 export const OG_IMAGE_WIDTH = 1200;
@@ -17,7 +16,45 @@ export interface OgImageOptions {
 export interface RasterizeOptions {
   background?: string;
   scale?: number;
+  width?: number;
+  height?: number;
 }
+
+type ResvgModule = typeof import("@resvg/resvg-js") | null;
+type SharpModule = typeof import("sharp") | null;
+
+let resvgModulePromise: Promise<ResvgModule> | null = null;
+let sharpModulePromise: Promise<SharpModule> | null = null;
+
+const loadResvg = async (): Promise<ResvgModule> => {
+  if (!resvgModulePromise) {
+    const specifier = "@resvg/resvg-js";
+    resvgModulePromise = import(/* @vite-ignore */ specifier)
+      .then((module) => module as typeof import("@resvg/resvg-js"))
+      .catch(() => null);
+  }
+
+  return resvgModulePromise;
+};
+
+const loadSharp = async (): Promise<SharpModule> => {
+  if (!sharpModulePromise) {
+    const specifier = "sharp";
+    sharpModulePromise = import(/* @vite-ignore */ specifier)
+      .then((module) => (module.default ?? module) as typeof import("sharp"))
+      .catch(() => null);
+  }
+
+  return sharpModulePromise;
+};
+
+const sanitizeScale = (value: number | undefined): number => {
+  if (!Number.isFinite(value) || value === undefined) {
+    return 1;
+  }
+
+  return Math.min(Math.max(value, 0.1), 4);
+};
 
 const escapeHtml = (value: string): string =>
   value.replace(/[&<>"']/g, (char) => {
@@ -163,15 +200,46 @@ export const rasterizeSvgToPng = async (
   svg: string,
   options: RasterizeOptions = {},
 ): Promise<Buffer> => {
-  const { background = "rgba(0, 0, 0, 0)", scale = 1 } = options;
+  const {
+    background = "rgba(0, 0, 0, 0)",
+    scale: providedScale,
+    width = OG_IMAGE_WIDTH,
+    height = OG_IMAGE_HEIGHT,
+  } = options;
 
-  const renderer = new Resvg(svg, {
-    background,
-    fitTo: scale === 1 ? { mode: "original" } : { mode: "zoom", value: scale },
-    fonts: {
-      loadSystemFonts: true,
-    },
-  });
+  const scale = sanitizeScale(providedScale);
 
-  return Buffer.from(renderer.render().asPng());
+  const resvg = await loadResvg();
+  if (resvg?.Resvg) {
+    const renderer = new resvg.Resvg(svg, {
+      background,
+      fitTo: scale === 1 ? { mode: "original" } : { mode: "zoom", value: scale },
+      fonts: {
+        loadSystemFonts: true,
+      },
+    });
+
+    return Buffer.from(renderer.render().asPng());
+  }
+
+  const sharp = await loadSharp();
+  if (!sharp) {
+    throw new Error(
+      "Unable to rasterize SVG: neither @resvg/resvg-js nor sharp could be loaded.",
+    );
+  }
+
+  const targetWidth = Math.max(1, Math.round(width * scale));
+  const targetHeight = Math.max(1, Math.round(height * scale));
+  const density = Math.max(1, Math.round(72 * scale));
+
+  const pipeline = sharp(Buffer.from(svg), { density })
+    .resize(targetWidth, targetHeight, { fit: "fill" })
+    .png();
+
+  if (background !== "rgba(0, 0, 0, 0)") {
+    pipeline.flatten({ background });
+  }
+
+  return pipeline.toBuffer();
 };
