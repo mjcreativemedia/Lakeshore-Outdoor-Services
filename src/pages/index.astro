@@ -4,49 +4,81 @@ import SEO from "../components/SEO.astro";
 import JsonLd from "../components/JsonLd.astro";
 import { business } from "../data/business";
 
-const title = `${business.name} | North Shore snow removal`;
-const description = "Premium residential snow removal, ice dam steaming, and winter maintenance for Lake Forest and the North Shore.";
+const title = `${business.name} | Chicagoland snow removal`;
+const description = "Reliable residential and light commercial snow removal, de-icing, and winter maintenance across Chicagoland.";
 const canonical = new URL(Astro.url.pathname, business.site).toString();
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "SnowRemovalService",
-  name: business.name,
-  url: canonical,
-  description,
-  areaServed: {
-    "@type": "AdministrativeArea",
-    name: business.address.city,
-  },
-  provider: {
-    "@type": "LocalBusiness",
-    name: business.name,
-    telephone: business.phone,
-    email: business.email,
-    url: business.site,
-    address: {
+const { address, serviceAreas } = business;
+const hasStreet = address.street.trim().length > 0;
+const hasPostal = address.postal.trim().length > 0;
+const businessAddress = hasStreet
+  ? {
       "@type": "PostalAddress",
-      streetAddress: business.address.street,
-      addressLocality: business.address.city,
-      addressRegion: business.address.region,
-      postalCode: business.address.postal,
-      addressCountry: business.address.country,
-    },
-  },
+      streetAddress: address.street,
+      addressLocality: address.city,
+      addressRegion: address.region,
+      ...(hasPostal ? { postalCode: address.postal } : {}),
+      addressCountry: address.country,
+    }
+  : {
+      "@type": "PostalAddress",
+      addressLocality: address.city,
+      addressRegion: address.region,
+      addressCountry: address.country,
+    };
+
+const schema: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://lakeshoreoutdoor.com/#business",
+  name: business.name,
+  description,
+  url: canonical,
+  telephone: business.phone,
+  email: business.email,
+  address: businessAddress,
+  areaServed: serviceAreas,
+  sameAs: [],
 };
+// TODO: Add GBP and Facebook profile URLs to sameAs once available.
 ---
 <Base title={title}>
   <SEO title={title} description={description} canonical={canonical} type="website" />
   <JsonLd schema={schema} />
   <section class="hero">
-    <h1>Reliable snow removal for Lake Forest homes</h1>
+    <h1>Reliable snow removal for Chicagoland homes &amp; small businesses</h1>
     <p>
-      {business.name} keeps driveways, walks, and roofs clear with proactive monitoring, fast dispatch, and detail-focused crews.
-      From seasonal contracts to emergency ice dam steaming, we tailor service around your property.
+      {business.name} keeps driveways, sidewalks, and entryways clear with proactive storm monitoring, fast dispatch, and
+      detail-focused crews. From seasonal contracts to emergency response, we tailor service around each property and keep you
+      moving all winter long.
     </p>
     <div class="actions">
       <a class="primary" href="/contact/">Get a snow quote</a>
-      <a class="secondary" href="/services/ice-dam-removal/">Explore our services</a>
+      <a class="secondary" href="/services/">Explore our services</a>
     </div>
+    <a class="call-now" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+  </section>
+  <section class="services">
+    <h2>Winter services built for Chicagoland weather</h2>
+    <p>
+      We handle plowing, shoveling, de-icing, and roof steaming so you can focus on your family or business. Each route includes
+      handwork for walkways and stairs, real-time communication during storms, and post-event cleanup.
+    </p>
+    <ul>
+      <li>Seasonal residential snow plowing</li>
+      <li>Sidewalk and walkway shoveling</li>
+      <li>De-icing for drives, stoops, and storefronts</li>
+      <li>Ice dam monitoring and steaming</li>
+    </ul>
+  </section>
+  <section class="areas">
+    <h2>Areas we cover</h2>
+    <p>We operate as a service-area business covering much of the North Shore and nearby suburbs.</p>
+    <ul>
+      <li><a href="/locations/snow-removal-chicago/">Chicago</a></li>
+      <li><a href="/locations/snow-removal-lakeview/">Lakeview</a></li>
+      <li><a href="/locations/snow-removal-lincoln-park/">Lincoln Park</a></li>
+      <li><a href="/locations/snow-removal-lake-county/">Lake County</a></li>
+    </ul>
   </section>
 </Base>
 
@@ -54,7 +86,7 @@ const schema = {
   .hero {
     margin: 0 auto;
     max-width: 760px;
-    padding: 4rem 1.5rem;
+    padding: 4rem 1.5rem 3rem;
     display: grid;
     gap: 1.5rem;
     text-align: center;
@@ -109,5 +141,60 @@ const schema = {
   .secondary:focus {
     border-color: #1d4ed8;
     color: #1e3a8a;
+  }
+
+  .call-now {
+    display: inline-flex;
+    align-self: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    background: #0f172a;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .call-now:hover,
+  .call-now:focus {
+    background: #0b1220;
+  }
+
+  .services,
+  .areas {
+    margin: 0 auto;
+    max-width: 720px;
+    padding: 2.5rem 1.5rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .services ul,
+  .areas ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .areas ul {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .areas a {
+    display: inline-block;
+    background: #e2e8f0;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    color: #0f172a;
+  }
+
+  .areas a:hover,
+  .areas a:focus {
+    background: #cbd5f5;
   }
 </style>

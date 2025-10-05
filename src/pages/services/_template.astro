@@ -16,33 +16,77 @@ export interface Props {
 const { title, description, serviceName, city, area, internalLinks = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, business.site).toString();
 const locationName = city ?? area ?? business.address.city;
+const { address, serviceAreas } = business;
+const hasStreet = address.street.trim().length > 0;
+const hasPostal = address.postal.trim().length > 0;
+const providerAddress = hasStreet
+  ? {
+      "@type": "PostalAddress",
+      streetAddress: address.street,
+      addressLocality: address.city,
+      addressRegion: address.region,
+      ...(hasPostal ? { postalCode: address.postal } : {}),
+      addressCountry: address.country,
+    }
+  : {
+      "@type": "PostalAddress",
+      addressLocality: address.city,
+      addressRegion: address.region,
+      addressCountry: address.country,
+    };
+const provider: Record<string, unknown> = {
+  "@type": "LocalBusiness",
+  "@id": `${business.site}/#business`,
+  name: business.name,
+  telephone: business.phone,
+  email: business.email,
+  url: business.site,
+  address: providerAddress,
+};
+
+if (!hasStreet) {
+  provider.areaServed = serviceAreas;
+}
+
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "SnowRemovalService",
   name: `${serviceName} | ${business.name}`,
   description,
   areaServed: locationName,
-  provider: {
-    "@type": "LocalBusiness",
-    name: business.name,
-    telephone: business.phone,
-    email: business.email,
-    url: business.site,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: business.address.street,
-      addressLocality: business.address.city,
-      addressRegion: business.address.region,
-      postalCode: business.address.postal,
-      addressCountry: business.address.country,
-    },
-  },
+  provider,
   url: canonical,
+};
+
+const breadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${business.site}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Services",
+      item: `${business.site}/services/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: serviceName,
+      item: canonical,
+    },
+  ],
 };
 ---
 <Base title={title}>
   <SEO title={title} description={description} canonical={canonical} type="service" />
   <JsonLd schema={serviceSchema} />
+  <JsonLd schema={breadcrumbs} />
   <article class="content">
     <header>
       <p class="eyebrow">{locationName}</p>

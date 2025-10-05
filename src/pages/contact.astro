@@ -7,23 +7,41 @@ import { business } from "../data/business";
 const title = "Get a snow quote";
 const description = "Request fast snow removal pricing from Lakeshore Outdoor Services. Call us or send the form to get a tailored estimate.";
 const canonical = new URL(Astro.url.pathname, business.site).toString();
-const schema = {
+const { address, serviceAreas } = business;
+const hasStreet = address.street.trim().length > 0;
+const hasPostal = address.postal.trim().length > 0;
+const businessAddress = hasStreet
+  ? {
+      "@type": "PostalAddress",
+      streetAddress: address.street,
+      addressLocality: address.city,
+      addressRegion: address.region,
+      ...(hasPostal ? { postalCode: address.postal } : {}),
+      addressCountry: address.country,
+    }
+  : {
+      "@type": "PostalAddress",
+      addressLocality: address.city,
+      addressRegion: address.region,
+      addressCountry: address.country,
+    };
+
+const schema: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": `${business.site}/#business`,
   name: business.name,
   telephone: business.phone,
   email: business.email,
   url: canonical,
   description,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: business.address.street,
-    addressLocality: business.address.city,
-    addressRegion: business.address.region,
-    postalCode: business.address.postal,
-    addressCountry: business.address.country,
-  },
+  address: businessAddress,
+  sameAs: [],
 };
+
+if (!hasStreet) {
+  schema.areaServed = serviceAreas;
+}
 ---
 <Base title={title}>
   <SEO title={`${title} | ${business.name}`} description={description} canonical={canonical} type="LocalBusiness" />
@@ -33,7 +51,8 @@ const schema = {
       <h1>{title}</h1>
       <p>
         We respond to most requests within one business day. Call us at
-        <a href={`tel:${business.phone}`}>{business.phone}</a> or share the details below and we'll follow up with a custom snow removal quote.
+        <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> or share the details below and we'll follow up with a custom
+        snow removal quote.
       </p>
     </header>
     <form action="https://formspree.io/f/your-form-id" method="POST" class="form">
@@ -50,6 +69,7 @@ const schema = {
       <input type="hidden" name="_redirect" value="https://lakeshoreoutdoor.com/thank-you/" />
       <!-- Form name to group leads in Formspree -->
       <input type="hidden" name="_subject" value="Lakeshore Outdoor — New Lead" />
+      <input type="hidden" name="page" id="contact-page-source" value="" />
       <label>
         <span>Name</span>
         <input type="text" name="name" required autocomplete="name" />
@@ -68,6 +88,12 @@ const schema = {
       </label>
       <button type="submit">Request my quote</button>
     </form>
+    <script>
+      const sourceField = document.getElementById("contact-page-source");
+      if (sourceField) {
+        sourceField.value = window.location.pathname;
+      }
+    </script>
   </section>
 </Base>
 

@@ -1,0 +1,91 @@
+---
+import Base from "../../layouts/Base.astro";
+import SEO from "../../components/SEO.astro";
+import { business } from "../../data/business";
+
+const title = "Snow removal locations";
+const description = "See Lakeshore Outdoor Services coverage across Chicago, Lakeview, Lincoln Park, and Lake County.";
+const canonical = new URL(Astro.url.pathname, business.site).toString();
+const locations = [
+  {
+    href: "/locations/snow-removal-chicago/",
+    name: "Chicago",
+    summary: "North Side and North Shore routes with plowing, shoveling, and de-icing crews.",
+  },
+  {
+    href: "/locations/snow-removal-lakeview/",
+    name: "Lakeview",
+    summary: "Alley, driveway, and sidewalk service tailored to dense residential blocks.",
+  },
+  {
+    href: "/locations/snow-removal-lincoln-park/",
+    name: "Lincoln Park",
+    summary: "Snow clearing for brownstones, condos, and neighborhood retail corridors.",
+  },
+  {
+    href: "/locations/snow-removal-lake-county/",
+    name: "Lake County",
+    summary: "Large estate and HOA service covering the North Shore suburbs.",
+  },
+];
+---
+<Base title={title}>
+  <SEO title={`${title} | ${business.name}`} description={description} canonical={canonical} type="website" />
+  <section class="listing">
+    <header>
+      <h1>{title}</h1>
+      <p>{description}</p>
+    </header>
+    <ul>
+      {locations.map((location) => (
+        <li>
+          <h2><a href={location.href}>{location.name}</a></h2>
+          <p>{location.summary}</p>
+          <a class="cta" href={location.href}>View location</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .listing {
+    margin: 0 auto;
+    max-width: 720px;
+    padding: 3rem 1.5rem;
+    display: grid;
+    gap: 2rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  li {
+    background: #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .cta {
+    align-self: flex-start;
+    display: inline-flex;
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cta:hover,
+  .cta:focus {
+    background: #1d4ed8;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { business } from "../../data/business";
+
+const page: Props = {
+  title: "Snow Removal in Lakeview, Chicago — Driveways, Sidewalks & De-icing",
+  description:
+    "Keep Lakeview residences and storefronts clear with proactive snow plowing, shoveling, and salting tuned for busy city blocks.",
+  serviceName: "Lakeview snow removal",
+  city: "Chicago",
+  area: "Lakeview",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Explore our snow removal programs",
+      description: "Compare seasonal, per-push, and emergency options for Chicagoland properties.",
+    },
+    {
+      href: "/contact/",
+      label: "Book Lakeview service",
+      description: "Tell us about your building, alley access, and sidewalks so we can assign the right crew.",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Lakeview snow crews on standby</h2>
+    <p>
+      We maintain townhouse alleys, condo entrances, and retail sidewalks along Belmont, Broadway, and Clark. Crews are familiar
+      with meter parking restrictions and coordinate with property managers to prevent snow piles from blocking visibility.
+    </p>
+    <ul>
+      <li>Driveway and alley plowing with compact trucks and snow blowers</li>
+      <li>Sidewalk shoveling for residential stoops and storefronts</li>
+      <li>Calcium chloride and treated salt applications for fast melt</li>
+    </ul>
+  </section>
+  <section class="faq">
+    <h2>Lakeview service FAQs</h2>
+    <details>
+      <summary>Do you clear snow before rush hour?</summary>
+      <p>
+        Yes. We stage crews overnight so driveways, alleys, and sidewalks are clear before morning commuters hit the road or walk
+        to the train.
+      </p>
+    </details>
+    <details>
+      <summary>Can you handle corner lots and long sidewalks?</summary>
+      <p>
+        Absolutely. Our teams assign extra shovelers to corner buildings to keep crosswalks and curb cuts accessible.
+      </p>
+    </details>
+    <details>
+      <summary>How do I request emergency service?</summary>
+      <p>
+        Call us at <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> or submit the <a href="/contact/">contact form</a>
+        to trigger our <a href="/services/emergency-snow-removal/">emergency snow removal team</a>.
+      </p>
+    </details>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .faq details {
+    background: #f1f5f9;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .faq p {
+    margin-top: 0.75rem;
+  }
+</style>

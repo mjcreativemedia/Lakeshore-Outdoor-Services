@@ -1,0 +1,71 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+
+const page: Props = {
+  title: "Chicagoland snow removal services",
+  description:
+    "Residential and light commercial snow plowing, shoveling, and de-icing across Chicago, the North Shore, and nearby suburbs.",
+  serviceName: "Snow removal",
+  city: "Chicago",
+  internalLinks: [
+    {
+      href: "/locations/snow-removal-chicago/",
+      label: "Snow removal in Chicago",
+      description: "See how our city crews handle alleys, sidewalks, and storefronts.",
+    },
+    {
+      href: "/contact/",
+      label: "Request a seasonal quote",
+      description: "Lock in priority dispatch before the next winter storm rolls in.",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Everything you need for a clear property</h2>
+    <p>
+      We combine plow trucks, shovel teams, and de-icing specialists to keep residential and small commercial sites open all
+      winter. Routes are customized based on your trigger depth, surface materials, and hours of operation.
+    </p>
+    <ul>
+      <li>Driveway and parking lot plowing with real-time storm alerts</li>
+      <li>Sidewalk, stair, and entry shoveling with ice melt application</li>
+      <li>Loader and skid-steer support for tight spaces or heavy accumulation</li>
+    </ul>
+  </section>
+  <section class="details">
+    <h2>How our programs work</h2>
+    <p>
+      Seasonal clients receive weather monitoring, automatic dispatch at agreed trigger depths, and digital service logs after
+      each visit. Need a one-off push? We offer per-event pricing when capacity allows.
+    </p>
+    <p>
+      Ask about bundling roof snow clearing or <a href="/services/ice-dam-removal/">ice dam removal</a> with your plan so runoff
+      stays controlled even during long freeze-thaw cycles.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .details p {
+    margin: 0;
+  }
+
+  .details p + p {
+    margin-top: 0.75rem;
+  }
+</style>
