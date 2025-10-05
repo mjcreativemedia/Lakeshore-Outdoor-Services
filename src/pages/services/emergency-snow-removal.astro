@@ -22,6 +22,23 @@ const page: Props = {
       description: "Send details about your property so we can dispatch the right crew fast.",
     },
   ],
+  faqs: [
+    {
+      question: "How fast can a crew arrive?",
+      answer:
+        "We target arrival within 90 minutes inside the city and lakefront suburbs, weather and road conditions permitting. We’ll confirm ETA when you call so you know exactly when help is coming.",
+    },
+    {
+      question: "What triggers an emergency dispatch?",
+      answer:
+        "Emergencies include blocked driveways, stuck vehicles, disabled equipment, or accumulations beyond your contract’s trigger depth. When totals exceed agreements, we can add an extra pass to reopen access.",
+    },
+    {
+      question: "How is pricing handled?",
+      answer:
+        "Emergency work is billed hourly with a two-hour minimum. We’ll review rates on the phone before dispatching so there are no surprises, and invoice digitally once the job is complete.",
+    },
+  ],
 };
 
 const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
@@ -41,30 +58,6 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
     <p>
       <a class="cta" href={`tel:${BUSINESS.phone}`}>Call {phoneDisplay}</a>
     </p>
-  </section>
-  <section class="faq">
-    <h2>Emergency snow removal FAQs</h2>
-    <details>
-      <summary>How fast can a crew arrive?</summary>
-      <p>
-        We target arrival within 90 minutes inside the city and lakefront suburbs, weather and road conditions permitting. We’ll
-        confirm ETA when you call so you know exactly when help is coming.
-      </p>
-    </details>
-    <details>
-      <summary>What triggers an emergency dispatch?</summary>
-      <p>
-        Emergencies include blocked driveways, stuck vehicles, disabled equipment, or accumulations beyond your contract’s
-        trigger depth. When totals exceed agreements, we can add an extra pass to reopen access.
-      </p>
-    </details>
-    <details>
-      <summary>How is pricing handled?</summary>
-      <p>
-        Emergency work is billed hourly with a two-hour minimum. We’ll review rates on the phone before dispatching so there are
-        no surprises, and invoice digitally once the job is complete.
-      </p>
-    </details>
   </section>
   <section class="support-links">
     <h2>Stay ahead of the next storm</h2>
@@ -100,18 +93,4 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
     background: #1d4ed8;
   }
 
-  .faq details {
-    background: #f1f5f9;
-    border-radius: 0.75rem;
-    padding: 1rem 1.25rem;
-  }
-
-  .faq summary {
-    cursor: pointer;
-    font-weight: 600;
-  }
-
-  .faq p {
-    margin-top: 0.75rem;
-  }
 </style>

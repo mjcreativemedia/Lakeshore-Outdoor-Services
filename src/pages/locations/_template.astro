@@ -4,6 +4,12 @@ import SEO from "../../components/SEO.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import { BUSINESS } from "../../data/business";
 
+type FAQ = {
+  question: string;
+  answer: string;
+  answerHtml?: string;
+};
+
 export interface Props {
   title: string;
   description: string;
@@ -11,11 +17,24 @@ export interface Props {
   city: string;
   area?: string;
   internalLinks?: Array<{ href: string; label: string; description?: string }>;
+  faqs?: FAQ[];
+  faqHeading?: string;
 }
 
-const { title, description, serviceName, city, area, internalLinks = [] } = Astro.props;
+const {
+  title,
+  description,
+  serviceName,
+  city,
+  area,
+  internalLinks = [],
+  faqs = [],
+  faqHeading,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
-const locationName = area ? `${area}, ${city}` : city;
+const schemaLocation = area ?? city;
+const displayLocation = area ? `${area}, ${city}` : city;
+const seoTitle = `${title} | ${BUSINESS.name}`;
 const providerAddress = {
   "@type": "PostalAddress",
   addressLocality: BUSINESS.address.city,
@@ -23,34 +42,50 @@ const providerAddress = {
   addressCountry: BUSINESS.address.country,
 };
 
-const provider = {
+const localBusinessSchema = {
+  "@context": "https://schema.org",
   "@type": ["LocalBusiness", "ServiceAreaBusiness"],
   "@id": `${BUSINESS.site}/#business`,
   name: BUSINESS.name,
   telephone: BUSINESS.phone,
   email: BUSINESS.email,
   url: BUSINESS.site,
+  areaServed: [schemaLocation, ...BUSINESS.areasServed.filter((areaName) => areaName !== schemaLocation)],
   address: providerAddress,
-  areaServed: BUSINESS.areasServed,
 };
 
-const localBusinessSchema = {
+const serviceSchema = {
   "@context": "https://schema.org",
   "@type": ["SnowRemovalService", "Service"],
-  name: BUSINESS.name,
+  name: `${serviceName} in ${schemaLocation} | ${BUSINESS.name}`,
   description,
-  telephone: BUSINESS.phone,
-  email: BUSINESS.email,
-  url: canonical,
-  address: providerAddress,
-  areaServed: locationName,
+  areaServed: schemaLocation,
   serviceArea: {
     "@type": "AdministrativeArea",
-    name: locationName,
+    name: schemaLocation,
+  },
+  provider: {
+    "@id": `${BUSINESS.site}/#business`,
   },
   serviceType: serviceName,
-  provider,
+  url: canonical,
 };
+
+const faqSchema =
+  faqs.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
 
 const breadcrumbs = {
   "@context": "https://schema.org",
@@ -71,23 +106,39 @@ const breadcrumbs = {
     {
       "@type": "ListItem",
       position: 3,
-      name: locationName,
+      name: displayLocation,
       item: canonical,
     },
   ],
 };
+
+const schema = [localBusinessSchema, serviceSchema, ...(faqSchema ? [faqSchema] : []), breadcrumbs];
 ---
-<Base title={title}>
-  <SEO title={title} description={description} canonical={canonical} type="LocalBusiness" />
-  <JsonLd schema={localBusinessSchema} />
-  <JsonLd schema={breadcrumbs} />
+<Base title={seoTitle}>
+  <SEO title={seoTitle} description={description} canonical={canonical} type="LocalBusiness" />
+  <JsonLd schema={schema} />
   <article class="content">
     <header>
-      <p class="eyebrow">Serving {locationName}</p>
+      <p class="eyebrow">Serving {displayLocation}</p>
       <h1>{title}</h1>
       <p class="lead">{description}</p>
     </header>
     <slot />
+    {faqs.length > 0 && (
+      <section class="faq">
+        <h2>{faqHeading ?? `${displayLocation} snow removal FAQs`}</h2>
+        {faqs.map((faq) => (
+          <details>
+            <summary>{faq.question}</summary>
+            {faq.answerHtml ? (
+              <div class="faq-answer" set:html={faq.answerHtml} />
+            ) : (
+              <p class="faq-answer">{faq.answer}</p>
+            )}
+          </details>
+        ))}
+      </section>
+    )}
     {internalLinks.length > 0 && (
       <section class="internal-links">
         <h2>Plan your next step</h2>
@@ -148,5 +199,26 @@ const breadcrumbs = {
   .internal-links p {
     margin: 0.5rem 0 0;
     color: #1f2937;
+  }
+
+  .faq {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .faq details {
+    background: #f1f5f9;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .faq-answer {
+    margin: 0.75rem 0 0;
+    line-height: 1.6;
   }
 </style>

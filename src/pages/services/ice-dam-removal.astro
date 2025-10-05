@@ -20,6 +20,23 @@ const page: Props = {
       description: "See how we keep city driveways and walks clear before ice dams form.",
     },
   ],
+  faqs: [
+    {
+      question: "How fast can you get to my home?",
+      answer:
+        "During peak storms we prioritize active leaks and often arrive the same day. Evening and weekend dispatch is available for South Side and North Side homeowners.",
+    },
+    {
+      question: "Will steaming damage my shingles?",
+      answer:
+        "No. Steam melts the bond between ice and roofing materials without scraping. Our technicians maintain water flow to prevent refreezing on your eaves.",
+    },
+    {
+      question: "Do you clear snow before treating the ice dam?",
+      answer:
+        "Yes. We shovel critical roof sections and downspouts before steaming so runoff has a clear path away from your gutters and fascia.",
+    },
+  ],
 };
 ---
 <Template {...page}>
@@ -35,30 +52,6 @@ const page: Props = {
       <li>Preventive treatments to keep meltwater flowing</li>
     </ul>
   </section>
-  <section class="faq">
-    <h2>Ice dam removal FAQs</h2>
-    <details>
-      <summary>How fast can you get to my home?</summary>
-      <p>
-        During peak storms we prioritize active leaks and often arrive the same day. Evening and weekend dispatch is available for
-        South Side and North Side homeowners.
-      </p>
-    </details>
-    <details>
-      <summary>Will steaming damage my shingles?</summary>
-      <p>
-        No. Steam melts the bond between ice and roofing materials without scraping. Our technicians maintain water flow to
-        prevent refreezing on your eaves.
-      </p>
-    </details>
-    <details>
-      <summary>Do you clear snow before treating the ice dam?</summary>
-      <p>
-        Yes. We shovel critical roof sections and downspouts before steaming so runoff has a clear path away from your gutters
-        and fascia.
-      </p>
-    </details>
-  </section>
 </Template>
 
 <style>
@@ -72,20 +65,5 @@ const page: Props = {
     margin: 0;
     display: grid;
     gap: 0.5rem;
-  }
-
-  .faq details {
-    background: #f1f5f9;
-    border-radius: 0.75rem;
-    padding: 1rem 1.25rem;
-  }
-
-  .faq summary {
-    cursor: pointer;
-    font-weight: 600;
-  }
-
-  .faq p {
-    margin-top: 0.75rem;
   }
 </style>

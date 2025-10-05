@@ -15,9 +15,31 @@ const page: Props = {
       description: "See how our team maintains Chicago properties from November through March.",
     },
     {
+      href: "/services/emergency-snow-removal/",
+      label: "Emergency crews on standby",
+      description: "Request rapid response when blizzards or stuck vehicles halt access.",
+    },
+    {
       href: "/contact/",
       label: "Request a quote",
       description: "Share your property details and we’ll design a route that keeps your site accessible during every storm.",
+    },
+  ],
+  faqs: [
+    {
+      question: "How fast do you dispatch after the snow starts?",
+      answer:
+        "We aim to have crews on-site within two hours of trigger depth, often sooner when heavy accumulation is forecast. For overnight events, routes are staged before dawn to keep morning traffic moving.",
+    },
+    {
+      question: "Can you work with limited parking or tight alleys?",
+      answer:
+        "Yes. Our compact equipment and shovel teams are selected specifically for Chicago’s tighter lots, gangways, and shared drive spaces.",
+    },
+    {
+      question: "Do you offer on-demand pushes for smaller storms?",
+      answer:
+        "We provide one-time service when availability allows. Reach out through our contact form or call us for the fastest response during active weather.",
     },
   ],
 };
@@ -35,30 +57,6 @@ const page: Props = {
       <li>Eco-friendly de-icing blends that protect concrete and landscaping</li>
     </ul>
   </section>
-  <section class="faq">
-    <h2>Chicago snow removal FAQs</h2>
-    <details>
-      <summary>How fast do you dispatch after the snow starts?</summary>
-      <p>
-        We aim to have crews on-site within two hours of trigger depth, often sooner when heavy accumulation is forecast. For
-        overnight events, routes are staged before dawn to keep morning traffic moving.
-      </p>
-    </details>
-    <details>
-      <summary>Can you work with limited parking or tight alleys?</summary>
-      <p>
-        Yes. Our compact equipment and shovel teams are selected specifically for Chicago’s tighter lots, gangways, and shared
-        drive spaces.
-      </p>
-    </details>
-    <details>
-      <summary>Do you offer on-demand pushes for smaller storms?</summary>
-      <p>
-        We provide one-time service when availability allows. Reach out through our <a href="/contact/">contact form</a> or call
-        us for the fastest response during active weather.
-      </p>
-    </details>
-  </section>
 </Template>
 
 <style>
@@ -72,20 +70,5 @@ const page: Props = {
     margin: 0;
     display: grid;
     gap: 0.5rem;
-  }
-
-  .faq details {
-    background: #f8fafc;
-    border-radius: 0.75rem;
-    padding: 1rem 1.25rem;
-  }
-
-  .faq summary {
-    cursor: pointer;
-    font-weight: 600;
-  }
-
-  .faq p {
-    margin-top: 0.75rem;
   }
 </style>

@@ -1,0 +1,112 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
+
+const page: Props = {
+  title: "South Shore snow removal for lakefront blocks",
+  description:
+    "Seasonal and on-demand snow plowing, shoveling, and salting for Chicago’s South Shore neighborhood, covering South Shore Drive, Jeffery Boulevard, and 71st Street corridors.",
+  serviceName: "South Shore snow removal",
+  city: "Chicago",
+  area: "South Shore",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Explore snow removal services",
+      description: "See how our programs coordinate plowing, shoveling, and salting across Chicago neighborhoods.",
+    },
+    {
+      href: "/services/emergency-snow-removal/",
+      label: "Emergency help",
+      description: "Get rapid support when lake-effect squalls bury driveways or storefronts overnight.",
+    },
+    {
+      href: "/contact/",
+      label: "Request a South Shore quote",
+      description: "Send property details so we can customize a plan before the next band rolls ashore.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Do you service apartment courtyards and co-ops?",
+      answer:
+        "Yes. We tailor crews for gated courtyards, co-op parking lots, and shared walkways common along 73rd and 79th Streets.",
+    },
+    {
+      question: "How do you handle lake-effect icing?",
+      answer:
+        "We monitor shoreline sensors and keep brine trucks staged near South Shore Drive to pre-treat when spray and cold winds create black ice.",
+    },
+    {
+      question: "Can I schedule repeated cleanups during long storms?",
+      answer:
+        "Seasonal clients receive automatic return visits during prolonged systems so entrances stay open for residents and deliveries.",
+    },
+    {
+      question: "Who should I contact for urgent issues?",
+      answer:
+        "Call our dispatch line or submit the emergency snow removal form for immediate assistance.",
+      answerHtml: `<p>Call our dispatch line at <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or submit the <a href="/services/emergency-snow-removal/">emergency snow removal form</a> for immediate assistance.</p>`,
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Focused coverage for South Shore streets</h2>
+    <p>
+      South Shore’s proximity to Lake Michigan means fast-moving lake-effect bands that drop heavy, wet snow on South Shore Drive,
+      Jeffery Boulevard, and the residential streets feeding the Cultural Center and Rainbow Beach. We map each property to account
+      for one-way traffic patterns, Metra Electric crossings, and school zones near Adam Clayton Powell Jr. Paideia Academy.
+    </p>
+    <p>
+      Crews use compact plow trucks for tight gangways and rear parking pads while shovel teams tackle stoops, walkways, and
+      basement stairwells. De-icing materials are calibrated for historic limestone steps and church entrances along 75th Street
+      to avoid surface damage.
+    </p>
+  </section>
+  <section>
+    <h2>Storm monitoring tailored to the lakefront</h2>
+    <p>
+      We monitor forecasts from the National Weather Service, shoreline temperature buoys, and live feeds from Midway Airport to
+      anticipate sudden shifts in wind direction. When radar shows snow bands redeveloping over the lake, we dispatch additional
+      crews from our Calumet staging yard to cover apartment towers near 71st Street and commercial corridors around Stony Island
+      Avenue.
+    </p>
+    <p>
+      Seasonal contracts include pre-storm brining for long stretches of sidewalk near the South Shore Cultural Center and CPD
+      District 3. After the initial push, supervisors revisit properties to clear municipal windrows and ensure fire hydrants and
+      curb cuts remain visible for emergency vehicles.
+    </p>
+  </section>
+  <section>
+    <h2>Documentation for associations and small businesses</h2>
+    <p>
+      We deliver timestamped service logs after every visit, outlining snow totals, crew arrival and departure times, and the
+      materials applied. Condominium boards along South Bennett Avenue and small business owners on 79th Street rely on those
+      records to prove compliance with Chicago’s sidewalk clearing ordinance.
+    </p>
+    <p>
+      Need flexible billing? We offer seasonal invoices, per-event pricing, and emergency rates so you can protect South Shore
+      residents, congregations, and visitors without surprise costs.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  schema: Record<string, unknown>;
+  schema: Record<string, unknown> | Array<unknown>;
 }
 
 const { schema } = Astro.props;

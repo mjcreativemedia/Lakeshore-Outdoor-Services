@@ -22,10 +22,31 @@ const page: Props = {
       label: "Emergency snow removal",
       description: "Request rapid-response crews when heavy bands stall over the neighborhood.",
     },
+    {
+      href: "/contact/",
+      label: "Contact dispatch",
+      description: "Send storm details and photos so we can prioritize your property.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Do you coordinate with property managers or facility teams?",
+      answer:
+        "Yes. We provide updates before, during, and after each storm so property teams can plan staffing, move vehicles, and maintain safe pedestrian paths.",
+    },
+    {
+      question: "Can you prioritize medical or academic facilities?",
+      answer:
+        "Absolutely. Let us know about critical entrances or loading docks so we can stage crews for continuous attention during active weather.",
+    },
+    {
+      question: "How do I reach dispatch during a storm?",
+      answer:
+        "Call our office for immediate assistance or submit the contact form for non-urgent updates.",
+      answerHtml: `<p>Call <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> for immediate assistance or submit the <a href="/contact/">contact form</a> for non-urgent updates.</p>`,
+    },
   ],
 };
-
-const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
 ---
 <Template {...page}>
   <section>
@@ -40,30 +61,6 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
       <li>Pre- and post-storm de-icing to protect concrete, brick, and limestone walkways</li>
     </ul>
   </section>
-  <section class="faq">
-    <h2>Hyde Park FAQs</h2>
-    <details>
-      <summary>Do you coordinate with property managers or facility teams?</summary>
-      <p>
-        Yes. We provide updates before, during, and after each storm so property teams can plan staffing, move vehicles, and
-        maintain safe pedestrian paths.
-      </p>
-    </details>
-    <details>
-      <summary>Can you prioritize medical or academic facilities?</summary>
-      <p>
-        Absolutely. Let us know about critical entrances or loading docks so we can stage crews for continuous attention during
-        active weather.
-      </p>
-    </details>
-    <details>
-      <summary>How do I reach dispatch during a storm?</summary>
-      <p>
-        Call <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> for immediate assistance or submit the
-        <a href="/contact/">contact form</a> for non-urgent updates.
-      </p>
-    </details>
-  </section>
 </Template>
 
 <style>
@@ -77,20 +74,5 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
     margin: 0;
     display: grid;
     gap: 0.5rem;
-  }
-
-  .faq details {
-    background: #f1f5f9;
-    border-radius: 0.75rem;
-    padding: 1rem 1.25rem;
-  }
-
-  .faq summary {
-    cursor: pointer;
-    font-weight: 600;
-  }
-
-  .faq p {
-    margin-top: 0.75rem;
   }
 </style>

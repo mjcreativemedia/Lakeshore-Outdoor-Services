@@ -1,0 +1,107 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
+
+const page: Props = {
+  title: "Bronzeville snow removal for historic boulevards",
+  description:
+    "Reliable snow plowing, shoveling, and de-icing for Bronzeville residences, storefronts, and cultural corridors along King Drive, 47th Street, and Oakwood Boulevard.",
+  serviceName: "Bronzeville snow removal",
+  city: "Chicago",
+  area: "Bronzeville",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Explore snow removal services",
+      description: "Review our seasonal programs and on-demand pushes for Chicago neighborhoods.",
+    },
+    {
+      href: "/services/emergency-snow-removal/",
+      label: "Emergency assistance",
+      description: "Activate 24/7 crews when heavy bands close alleys or storefronts along 47th Street.",
+    },
+    {
+      href: "/contact/",
+      label: "Plan your Bronzeville route",
+      description: "Share property notes so we can prepare for alley access, loading docks, and sidewalk requirements.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Can you protect historic sidewalks and stone steps?",
+      answer:
+        "Yes. We use calcium blends and hand-application techniques on greystone entries along King Drive and Langley Boulevard.",
+    },
+    {
+      question: "Do you coordinate with business corridors?",
+      answer:
+        "We communicate with SSA teams and local chambers to clear curbside parking and bus stops along 43rd and 47th Streets.",
+    },
+    {
+      question: "How quickly can crews return for drifting snow?",
+      answer:
+        "Seasonal customers receive automatic return visits when winds push drifts back across alleys or plaza entrances.",
+    },
+    {
+      question: "What’s the fastest way to reach dispatch?",
+      answer:
+        "Call our office or send an emergency request online if snow piles start blocking traffic or deliveries.",
+      answerHtml: `<p>Call our office at <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or send an <a href="/services/emergency-snow-removal/">emergency request</a> if snow piles start blocking traffic or deliveries.</p>`,
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Coverage tuned to Bronzeville’s grid</h2>
+    <p>
+      Bronzeville features narrow residential streets, historic greystones, and vibrant commercial corridors. We map alleys and
+      garage entries between Cottage Grove Avenue and State Street to ensure plow trucks and shovel teams arrive without blocking
+      traffic or CTA bus lanes.
+    </p>
+    <p>
+      Crews keep sidewalks open for visitors to the Bronzeville Children’s Museum, Gallery Guichard, and the Harold Washington
+      Cultural Center. We also maintain parking lots for churches and community centers hosting food distribution and weekend
+      programs.
+    </p>
+  </section>
+  <section>
+    <h2>Equipment sized for courtyards and alleys</h2>
+    <p>
+      Many Bronzeville properties rely on gated courtyards and shared driveways. We pair compact plow trucks with walk-behind snow
+      blowers and shovel crews to clear areas that large city plows cannot reach. Crews document each visit with timestamps and
+      before-and-after photos when requested.
+    </p>
+    <p>
+      De-icing materials are tailored to protect the limestone steps and mosaic sidewalks common near historic row homes on
+      Calumet Avenue. For business corridors, we pre-treat crosswalks and curb cuts to keep pedestrian flow moving during
+      neighborhood events and farmers markets.
+    </p>
+  </section>
+  <section>
+    <h2>Storm monitoring and communication</h2>
+    <p>
+      Dispatchers monitor Midway Airport radar, lake-effect advisories, and CTA service alerts. You’ll receive text or email
+      updates when crews depart, along with digital service logs after each pass. If municipal plows redeposit snow at the end of
+      your block, we schedule a return visit to reopen parking and access lanes.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>

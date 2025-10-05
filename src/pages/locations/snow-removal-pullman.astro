@@ -1,0 +1,102 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { BUSINESS } from "../../data/business";
+import { formatPhoneForDisplay } from "../../utils/phone";
+
+const page: Props = {
+  title: "Pullman snow removal for historic row houses",
+  description:
+    "Snow plowing, shoveling, and de-icing for Pullman’s landmark homes, industrial campuses, and visitor attractions surrounding the Pullman National Historical Park.",
+  serviceName: "Pullman snow removal",
+  city: "Chicago",
+  area: "Pullman",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Explore snow removal services",
+      description: "See how our Chicago crews combine plowing, shoveling, and salting for every storm.",
+    },
+    {
+      href: "/services/emergency-snow-removal/",
+      label: "Emergency support",
+      description: "Request urgent help when lake-effect bursts bury historic streets or factory lots.",
+    },
+    {
+      href: "/contact/",
+      label: "Schedule a Pullman assessment",
+      description: "Tell us about your row house gangways, factory docks, and visitor entrances before winter hits.",
+    },
+  ],
+  faqs: [
+    {
+      question: "Can you work around landmark landscaping?",
+      answer:
+        "Yes. We protect brick pavers, wrought-iron fencing, and heritage plantings along Arcade Row and the Hotel Florence grounds.",
+    },
+    {
+      question: "Do you maintain visitor parking lots?",
+      answer:
+        "We plow and de-ice museum lots, Metra parking, and tour bus areas so guests can explore the Pullman clock tower complex safely.",
+    },
+    {
+      question: "How do you coordinate with local businesses?",
+      answer:
+        "We schedule plow passes around shift changes for nearby manufacturing campuses and communicate through digital service alerts.",
+    },
+    {
+      question: "What if a storm arrives during an event?",
+      answer:
+        "Call dispatch or submit the emergency form so we can stage crews near the Market Hall or factory courtyard entrances.",
+      answerHtml: `<p>Call dispatch at <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> or submit the <a href="/services/emergency-snow-removal/">emergency form</a> so we can stage crews near the Market Hall or factory courtyard entrances.</p>`,
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Historic streets need careful handling</h2>
+    <p>
+      Pullman’s narrow brick streets and preserved homes require gentle snow removal. We use rubber-edged plows and compact
+      equipment to avoid damaging masonry curbs or ornamental fencing near 111th Street and Cottage Grove Avenue.
+    </p>
+    <p>
+      Shovel teams clear gangways, back entrances, and stoops while applying pet-safe de-icers to protect landscaping. We also
+      keep ADA ramps and boardwalks accessible for museum guests and residents alike.
+    </p>
+  </section>
+  <section>
+    <h2>Industrial and visitor facilities stay open</h2>
+    <p>
+      Beyond the residential core, Pullman includes active factories, distribution centers, and the Method manufacturing campus.
+      We coordinate shift-based plowing to keep docks, loading zones, and employee parking lots clear before and after work hours.
+    </p>
+    <p>
+      Visitor-heavy weekends at the Pullman Visitor Center trigger additional sidewalk patrols and salting around interpretive
+      exhibits, Market Hall vendors, and event spaces.
+    </p>
+  </section>
+  <section>
+    <h2>Proactive communication and reporting</h2>
+    <p>
+      Seasonal clients receive storm alerts, route ETAs, and completion notices via text or email. Service logs document snowfall,
+      materials used, and any concerns we noticed, such as ice buildup near drainage grates or ruts in gravel parking areas.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+</style>

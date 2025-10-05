@@ -17,14 +17,35 @@ const page: Props = {
       description: "From seasonal contracts to emergency pushes, we cover Chicago and North Shore communities.",
     },
     {
+      href: "/services/emergency-snow-removal/",
+      label: "Emergency response",
+      description: "Secure rapid assistance when heavy snow or ice overwhelms your team.",
+    },
+    {
       href: "/contact/",
       label: "Plan your Evanston route",
       description: "Tell us about your driveway layout, sidewalks, and special considerations for a custom quote.",
     },
   ],
+  faqs: [
+    {
+      question: "What snowfall depth triggers service?",
+      answer:
+        "Most seasonal plans trigger at two inches, with pre-salting when freezing rain is in the forecast. We can adjust depth to match village requirements or HOA bylaws.",
+    },
+    {
+      question: "Can you clear private alleys or shared drives?",
+      answer:
+        "Yes. We operate equipment sized for shared easements and coordinate with neighbors as needed to keep everyone moving.",
+    },
+    {
+      question: "How do I request priority support?",
+      answer:
+        "Call our dispatch team or submit the emergency snow removal form for urgent pushes.",
+      answerHtml: `<p>Call <a href="tel:${BUSINESS.phone}">${formatPhoneForDisplay(BUSINESS.phone)}</a> to reach dispatch directly or submit the <a href="/services/emergency-snow-removal/">emergency snow removal form</a> for urgent pushes.</p>`,
+    },
+  ],
 };
-
-const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
 ---
 <Template {...page}>
   <section>
@@ -39,29 +60,6 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
       <li>Granular and liquid de-icing options based on surface type</li>
     </ul>
   </section>
-  <section class="faq">
-    <h2>Evanston FAQs</h2>
-    <details>
-      <summary>What snowfall depth triggers service?</summary>
-      <p>
-        Most seasonal plans trigger at two inches, with pre-salting when freezing rain is in the forecast. We can adjust depth to
-        match village requirements or HOA bylaws.
-      </p>
-    </details>
-    <details>
-      <summary>Can you clear private alleys or shared drives?</summary>
-      <p>
-        Yes. We operate equipment sized for shared easements and coordinate with neighbors as needed to keep everyone moving.
-      </p>
-    </details>
-    <details>
-      <summary>How do I request priority support?</summary>
-      <p>
-        Call <a href={`tel:${BUSINESS.phone}`}>{phoneDisplay}</a> to reach dispatch directly or submit the
-        <a href="/services/emergency-snow-removal/">emergency snow removal form</a> for urgent pushes.
-      </p>
-    </details>
-  </section>
 </Template>
 
 <style>
@@ -75,20 +73,5 @@ const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
     margin: 0;
     display: grid;
     gap: 0.5rem;
-  }
-
-  .faq details {
-    background: #f1f5f9;
-    border-radius: 0.75rem;
-    padding: 1rem 1.25rem;
-  }
-
-  .faq summary {
-    cursor: pointer;
-    font-weight: 600;
-  }
-
-  .faq p {
-    margin-top: 0.75rem;
   }
 </style>
