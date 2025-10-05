@@ -1,17 +1,21 @@
 ---
 import Base from "../layouts/Base.astro";
+import SEO from "../components/SEO.astro";
 import { BUSINESS } from "../data/business";
 import { formatPhoneForDisplay } from "../utils/phone";
 
+const title = "Thanks — we got your request";
+const seoTitle = `Request received | ${BUSINESS.name}`;
+const description =
+  "Thanks for contacting Lakeshore Outdoor Services. We’ll review your snow removal request and respond soon with scheduling options and pricing for your property.";
+const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
 const phoneDisplay = formatPhoneForDisplay(BUSINESS.phone);
 ---
-<Base
-  title="Thanks — we got your request"
-  description="We’ll be in touch shortly with your custom quote."
-  canonical="https://lakeshoreoutdoor.com/thank-you/"
->
-  <meta name="robots" content="noindex,follow" />
-  <meta http-equiv="refresh" content="8;url=/" />
+<Base title={title} robots="noindex,follow">
+  <SEO title={seoTitle} description={description} canonical={canonical} type="website" />
+  <Fragment slot="head">
+    <meta http-equiv="refresh" content="8;url=/" />
+  </Fragment>
   <h1>Thanks! We’ll reach out shortly.</h1>
   <p>
     Our team received your request. If this is urgent, call

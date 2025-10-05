@@ -1,11 +1,30 @@
 ---
 import Base from "../../layouts/Base.astro";
 import SEO from "../../components/SEO.astro";
+import JsonLd from "../../components/JsonLd.astro";
 import { BUSINESS } from "../../data/business";
 
 const title = "Snow removal locations";
 const description = "See Lakeshore Outdoor Services coverage across Chicago’s lakefront neighborhoods and nearby North Shore communities.";
 const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
+const breadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${BUSINESS.site}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Locations",
+      item: canonical,
+    },
+  ],
+};
 const areaPageMap = new Map<string, string>([
   ["Hyde Park", "/locations/snow-removal-hyde-park/"],
   ["Lakeview", "/locations/snow-removal-lakeview/"],
@@ -35,6 +54,7 @@ const areas = BUSINESS.areasServed.map((area) => ({
 ---
 <Base title={title}>
   <SEO title={`${title} | ${BUSINESS.name}`} description={description} canonical={canonical} type="website" />
+  <JsonLd schema={breadcrumbs} />
   <section class="listing">
     <header>
       <h1>{title}</h1>

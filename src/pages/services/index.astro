@@ -1,12 +1,31 @@
 ---
 import Base from "../../layouts/Base.astro";
 import SEO from "../../components/SEO.astro";
+import JsonLd from "../../components/JsonLd.astro";
 import { BUSINESS } from "../../data/business";
 
 const title = "Snow and ice services";
 const description =
   "Browse Lakeshore Outdoor Services offerings for Chicago-area snow plowing, ice dam steaming, and 24/7 emergency dispatch.";
 const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
+const breadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${BUSINESS.site}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Services",
+      item: canonical,
+    },
+  ],
+};
 const services = [
   {
     href: "/services/snow-removal/",
@@ -27,6 +46,7 @@ const services = [
 ---
 <Base title={title}>
   <SEO title={`${title} | ${BUSINESS.name}`} description={description} canonical={canonical} type="website" />
+  <JsonLd schema={breadcrumbs} />
   <section class="listing">
     <header>
       <h1>{title}</h1>
