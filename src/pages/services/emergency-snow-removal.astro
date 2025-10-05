@@ -1,0 +1,113 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { business } from "../../data/business";
+
+const page: Props = {
+  title: "Emergency Snow Removal (24/7 Dispatch) — Lakeshore Outdoor Services",
+  description:
+    "Round-the-clock emergency snow plowing and shoveling across Chicagoland. Call anytime to clear surprise drifts or reopen blocked access.",
+  serviceName: "Emergency snow removal",
+  city: "Chicago",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Chicagoland snow removal services",
+      description: "See our ongoing programs for seasonal and per-push coverage.",
+    },
+    {
+      href: "/contact/",
+      label: "Request emergency help",
+      description: "Send details about your property so we can dispatch the right crew fast.",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>24/7 crews for urgent snow issues</h2>
+    <p>
+      When heavy bands stall over your property or equipment fails mid-storm, our rapid-response team can dig you out. We keep
+      operators on standby with plow trucks, shoveling crews, and skid steers ready to mobilize.
+    </p>
+    <p>
+      Call the emergency snow removal hotline at
+      <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> to connect directly with dispatch, or tap the button below to
+      send project details.
+    </p>
+    <p>
+      <a class="cta" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+    </p>
+  </section>
+  <section class="faq">
+    <h2>Emergency snow removal FAQs</h2>
+    <details>
+      <summary>How fast can a crew arrive?</summary>
+      <p>
+        We target arrival within 90 minutes inside the city and North Shore, weather and road conditions permitting. We’ll
+        confirm ETA when you call so you know exactly when help is coming.
+      </p>
+    </details>
+    <details>
+      <summary>What triggers an emergency dispatch?</summary>
+      <p>
+        Emergencies include blocked driveways, stuck vehicles, disabled equipment, or accumulations beyond your contract’s
+        trigger depth. When totals exceed agreements, we can add an extra pass to reopen access.
+      </p>
+    </details>
+    <details>
+      <summary>How is pricing handled?</summary>
+      <p>
+        Emergency work is billed hourly with a two-hour minimum. We’ll review rates on the phone before dispatching so there are
+        no surprises, and invoice digitally once the job is complete.
+      </p>
+    </details>
+  </section>
+  <section class="support-links">
+    <h2>Stay ahead of the next storm</h2>
+    <p>
+      Add yourself to our seasonal roster to secure guaranteed service on the next snowfall. Explore the
+      <a href="/services/snow-removal/">snow removal programs</a> or see local coverage in
+      <a href="/locations/snow-removal-lakeview/">Lakeview</a> and <a href="/locations/snow-removal-lincoln-park/">Lincoln Park</a>.
+    </p>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .cta:hover,
+  .cta:focus {
+    background: #1d4ed8;
+  }
+
+  .faq details {
+    background: #f1f5f9;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .faq p {
+    margin-top: 0.75rem;
+  }
+</style>

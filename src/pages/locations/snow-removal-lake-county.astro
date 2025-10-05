@@ -1,0 +1,91 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { business } from "../../data/business";
+
+const page: Props = {
+  title: "Snow Removal in Lake County — Estates, Drives & Walkways",
+  description:
+    "Comprehensive snow plowing, shoveling, and ice management for Lake County homes and small businesses with long drives or private roads.",
+  serviceName: "Lake County snow removal",
+  city: "Lake County",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "Discover our snow removal services",
+      description: "From seasonal contracts to emergency pushes, we cover Chicagoland and the North Shore.",
+    },
+    {
+      href: "/contact/",
+      label: "Plan your Lake County route",
+      description: "Tell us about your driveway layout, sidewalks, and special considerations for a custom quote.",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Lake County coverage without the wait</h2>
+    <p>
+      Our teams service communities from Highland Park to Libertyville, maintaining large estate drives and neighborhood HOA
+      routes. Dispatchers adjust timing for lake-effect bands and keep you updated when plows are en route.
+    </p>
+    <ul>
+      <li>Heavy-duty trucks and loaders for long drives and cul-de-sacs</li>
+      <li>Shovel crews for patios, walkways, and porch steps</li>
+      <li>Granular and liquid de-icing options based on surface type</li>
+    </ul>
+  </section>
+  <section class="faq">
+    <h2>Lake County FAQs</h2>
+    <details>
+      <summary>What snowfall depth triggers service?</summary>
+      <p>
+        Most seasonal plans trigger at two inches, with pre-salting when freezing rain is in the forecast. We can adjust depth to
+        match HOA bylaws.
+      </p>
+    </details>
+    <details>
+      <summary>Can you clear private roads or shared drives?</summary>
+      <p>
+        Yes. We operate equipment sized for long private drives and shared easements, coordinating with neighbors as needed.
+      </p>
+    </details>
+    <details>
+      <summary>How do I request priority support?</summary>
+      <p>
+        Call <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> to reach dispatch directly or submit the
+        <a href="/services/emergency-snow-removal/">emergency snow removal form</a> for urgent pushes.
+      </p>
+    </details>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .faq details {
+    background: #f1f5f9;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .faq p {
+    margin-top: 0.75rem;
+  }
+</style>

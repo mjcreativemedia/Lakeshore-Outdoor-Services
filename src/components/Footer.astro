@@ -1,18 +1,30 @@
 ---
 import { business } from "../data/business";
-const address = business.address;
+
+const { address } = business;
+const hasStreet = address.street.trim().length > 0;
+const hasPostal = address.postal.trim().length > 0;
+const locationLine = [address.city, address.region, hasPostal ? address.postal : null]
+  .filter(Boolean)
+  .join(" ");
 ---
 <footer class="site-footer">
   <div class="container">
     <div>
       <h2>{business.name}</h2>
       <p>
-        <a href={`tel:${business.phone}`}>{business.phone}</a><br />
+        <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a><br />
         <a href={`mailto:${business.email}`}>{business.email}</a>
       </p>
       <address>
-        {address.street}<br />
-        {address.city}, {address.region} {address.postal}<br />
+        {hasStreet && (
+          <>
+            {address.street}
+            <br />
+          </>
+        )}
+        {locationLine}
+        <br />
         {address.country}
       </address>
     </div>

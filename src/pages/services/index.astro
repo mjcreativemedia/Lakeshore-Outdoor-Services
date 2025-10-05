@@ -1,0 +1,86 @@
+---
+import Base from "../../layouts/Base.astro";
+import SEO from "../../components/SEO.astro";
+import { business } from "../../data/business";
+
+const title = "Snow and ice services";
+const description = "Browse Lakeshore Outdoor Services offerings for Chicagoland snow plowing, ice dam steaming, and emergency dispatch.";
+const canonical = new URL(Astro.url.pathname, business.site).toString();
+const services = [
+  {
+    href: "/services/snow-removal/",
+    name: "Snow removal",
+    summary: "Seasonal and per-event plowing, shoveling, and de-icing for homes and small businesses.",
+  },
+  {
+    href: "/services/emergency-snow-removal/",
+    name: "Emergency snow removal",
+    summary: "24/7 dispatch when unexpected accumulation blocks driveways, alleys, or storefronts.",
+  },
+  {
+    href: "/services/ice-dam-removal/",
+    name: "Ice dam removal",
+    summary: "Low-pressure steam to clear roof edges and prevent winter leaks.",
+  },
+];
+---
+<Base title={title}>
+  <SEO title={`${title} | ${business.name}`} description={description} canonical={canonical} type="website" />
+  <section class="listing">
+    <header>
+      <h1>{title}</h1>
+      <p>{description}</p>
+    </header>
+    <ul>
+      {services.map((service) => (
+        <li>
+          <h2><a href={service.href}>{service.name}</a></h2>
+          <p>{service.summary}</p>
+          <a class="cta" href={service.href}>Learn more</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .listing {
+    margin: 0 auto;
+    max-width: 720px;
+    padding: 3rem 1.5rem;
+    display: grid;
+    gap: 2rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  li {
+    background: #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .cta {
+    align-self: flex-start;
+    display: inline-flex;
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cta:hover,
+  .cta:focus {
+    background: #1d4ed8;
+  }
+</style>

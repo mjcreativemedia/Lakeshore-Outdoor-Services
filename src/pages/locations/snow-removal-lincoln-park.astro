@@ -1,0 +1,93 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { business } from "../../data/business";
+
+const page: Props = {
+  title: "Snow Removal in Lincoln Park — Homes & Storefronts",
+  description:
+    "Lincoln Park snow plowing, shoveling, and salting for brownstones, condos, and neighborhood retail. Stay open and accessible all season.",
+  serviceName: "Lincoln Park snow removal",
+  city: "Chicago",
+  area: "Lincoln Park",
+  internalLinks: [
+    {
+      href: "/services/snow-removal/",
+      label: "See Chicagoland snow removal",
+      description: "Learn how we protect North Side properties with proactive monitoring and detailed shovel work.",
+    },
+    {
+      href: "/contact/",
+      label: "Schedule a site walk",
+      description: "Meet a supervisor to review your parking pads, alleys, and stairways before the next storm.",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Prepared for Lincoln Park’s busy blocks</h2>
+    <p>
+      We service historic row homes, mid-rise condos, and storefronts along Armitage, Halsted, and Clark. Our teams plan routes
+      to avoid disrupting pedestrian traffic and keep access open for residents and shoppers.
+    </p>
+    <ul>
+      <li>Dedicated crews for private drives, parking pads, and garages</li>
+      <li>Hand shoveling for front steps, parkways, and shared walkways</li>
+      <li>Ice melt applications that balance speed with surface protection</li>
+    </ul>
+  </section>
+  <section class="faq">
+    <h2>Lincoln Park FAQs</h2>
+    <details>
+      <summary>Do you coordinate with building managers?</summary>
+      <p>
+        Yes. We provide storm updates and arrival windows to property managers, ensuring elevators, loading docks, and dumpster
+        pads stay accessible.
+      </p>
+    </details>
+    <details>
+      <summary>Can you help with rooftop or deck shoveling?</summary>
+      <p>
+        We offer rooftop snow clearing when needed to prevent weight buildup and drain blockages. Let us know during your
+        <a href="/contact/">quote request</a> so we can plan extra manpower.
+      </p>
+    </details>
+    <details>
+      <summary>Who do I call for urgent service?</summary>
+      <p>
+        Reach our dispatch team anytime at <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> or submit the
+        <a href="/services/emergency-snow-removal/">emergency snow removal</a> request to jump the line during heavy storms.
+      </p>
+    </details>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .faq details {
+    background: #f8fafc;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .faq summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .faq p {
+    margin-top: 0.75rem;
+  }
+</style>
