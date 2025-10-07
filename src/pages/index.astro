@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import SEO from "../components/SEO.astro";
 import JsonLd from "../components/JsonLd.astro";
+import RemotePicture from "../components/RemotePicture.astro";
 import { BUSINESS, phone_display, phone_e164 } from "../data/business";
 
 const title = `${BUSINESS.name} | Chicago snow removal crews`;
@@ -60,46 +61,8 @@ const displayAreas = areasServed;
         <a href="/locations/snow-removal-evanston/">Evanston crews</a>
       </div>
     </div>
-    <div class="hero-media" aria-hidden="true">
-      <!--
-        Example: replace this SVG with a locally generated asset when testing the responsive image pipeline.
-        <Picture
-          src={Astro.resolve("../assets/generated/hero-placeholder.png")}
-          widths={[480, 768, 1024]}
-          sizes="(max-width: 960px) 100vw, 520px"
-          formats={["avif", "webp", "png"]}
-          alt="Snow removal crew clearing a driveway"
-          class="hero-picture"
-        />
-      -->
-      <svg viewBox="0 0 320 220" role="presentation" focusable="false">
-        <defs>
-          <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25" />
-            <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.65" />
-          </linearGradient>
-        </defs>
-        <rect width="320" height="220" rx="28" fill="url(#heroGradient)" />
-        <g fill="#f8fafc" opacity="0.9">
-          <circle cx="76" cy="72" r="28" />
-          <circle cx="122" cy="98" r="18" />
-          <circle cx="182" cy="70" r="22" />
-        </g>
-        <path
-          d="M32 160c32-28 64-28 96 0s64 28 96 0 64-28 96 0"
-          fill="none"
-          stroke="#dbeafe"
-          stroke-width="12"
-          stroke-linecap="round"
-        />
-        <path
-          d="M40 182c32-18 64-18 96 0s64 18 96 0 64-18 96 0"
-          fill="none"
-          stroke="#eff6ff"
-          stroke-width="10"
-          stroke-linecap="round"
-        />
-      </svg>
+    <div class="hero-media">
+      <RemotePicture id="hero-crew" class="hero-picture" loading="eager" />
     </div>
   </section>
   <section class="services">
@@ -183,7 +146,7 @@ const displayAreas = areasServed;
     aspect-ratio: 16 / 11;
     background: linear-gradient(135deg, #dbeafe 10%, #bfdbfe 40%, #60a5fa 100%);
     display: grid;
-    place-items: center;
+    place-items: stretch;
     overflow: hidden;
     position: relative;
   }
@@ -197,15 +160,11 @@ const displayAreas = areasServed;
     pointer-events: none;
   }
 
-  .hero-media svg {
-    width: 90%;
-    height: auto;
-    display: block;
-  }
-
   .hero-picture {
     display: block;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .actions {
