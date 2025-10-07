@@ -1,0 +1,71 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { getRemoteImage } from "../data/images";
+
+interface Props extends HTMLAttributes<"img"> {
+  id: string;
+}
+
+const {
+  id,
+  alt: altProp,
+  src: srcProp,
+  srcset: srcsetProp,
+  sizes: sizesProp,
+  ...rest
+} = Astro.props as Props;
+
+if (!id) {
+  throw new Error("<RemotePicture /> requires an `id` prop to look up the remote image.");
+}
+
+if (altProp !== undefined) {
+  throw new Error("<RemotePicture /> derives alt text from the manifest. Remove the `alt` prop override.");
+}
+
+if (srcProp !== undefined) {
+  throw new Error("<RemotePicture /> manages the `src` attribute automatically. Remove the `src` prop override.");
+}
+
+if (srcsetProp !== undefined) {
+  throw new Error("<RemotePicture /> manages the `srcset` attribute. Configure variants in the manifest instead.");
+}
+
+if (sizesProp !== undefined) {
+  throw new Error("<RemotePicture /> manages the `sizes` attribute. Configure it in the manifest entry instead.");
+}
+
+const manifestEntry = getRemoteImage(id);
+const { src, alt, width, height, srcset, sizes } = manifestEntry;
+
+const missingFields: string[] = [];
+
+if (!src) missingFields.push("src");
+if (!alt) missingFields.push("alt");
+
+if (missingFields.length > 0) {
+  throw new Error(
+    `<RemotePicture /> manifest entry "${id}" is missing required field(s): ${missingFields.join(", ")}.`,
+  );
+}
+
+const attributes: Record<string, unknown> = {
+  src,
+  alt,
+  loading: "lazy",
+  decoding: "async",
+  ...rest,
+};
+
+if (width) attributes.width = width;
+if (height) attributes.height = height;
+
+if (srcset) {
+  attributes.srcset = Array.isArray(srcset) ? srcset.join(", ") : srcset;
+}
+
+if (sizes) {
+  attributes.sizes = sizes;
+}
+---
+<img {...attributes} />
