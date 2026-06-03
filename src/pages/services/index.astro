@@ -4,9 +4,9 @@ import SEO from "../../components/SEO.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import { BUSINESS } from "../../data/business";
 
-const title = "Snow and ice services";
+const title = "Lawn care and yard cleanup services";
 const description =
-  "Browse Lakeshore Outdoor Services offerings for Chicago-area snow plowing, ice dam steaming, and 24/7 emergency dispatch.";
+  "Browse Lakeshore Outdoor Services offerings for Chicago lawn care, yard cleanup, branch trimming, planting, mulch, and seasonal snow removal.";
 const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
 const breadcrumbs = {
   "@context": "https://schema.org",
@@ -28,19 +28,46 @@ const breadcrumbs = {
 };
 const services = [
   {
+    href: "/services/lawn-care/",
+    name: "Lawn care",
+    group: "Primary offer",
+    summary: "Grass cutting, weed cleanup, edging, and basic lawn touch-ups for homes, landlords, churches, and small properties.",
+  },
+  {
+    href: "/services/yard-cleanup/",
+    name: "Yard cleanup",
+    group: "Primary offer",
+    summary: "Overgrowth cleanup, leaves, bagging, light debris removal, and getting neglected yards back under control.",
+  },
+  {
+    href: "/services/branch-trimming/",
+    name: "Branch trimming",
+    group: "Secondary offer",
+    summary: "Light branch trimming, low-hanging limbs, fence-line growth, and small bush shaping with hand tools and pole saws.",
+  },
+  {
+    href: "/services/planting-mulch/",
+    name: "Planting and mulch",
+    group: "Secondary offer",
+    summary: "Simple garden bed cleanup, flower planting, seed starts, mulch spreading, and clean curb-appeal refreshes.",
+  },
+  {
     href: "/services/snow-removal/",
     name: "Snow removal",
-    summary: "Seasonal and per-event plowing, shoveling, and de-icing for Chicago neighborhoods and nearby lakefront suburbs.",
+    group: "Seasonal offer",
+    summary: "Winter snow removal, shoveling, and de-icing for existing routes when Chicago weather turns.",
   },
   {
     href: "/services/emergency-snow-removal/",
     name: "Emergency snow removal",
-    summary: "24/7 dispatch when unexpected accumulation blocks driveways, alleys, or storefronts.",
+    group: "Seasonal offer",
+    summary: "Urgent winter help when unexpected accumulation blocks driveways, alleys, or storefronts.",
   },
   {
     href: "/services/ice-dam-removal/",
     name: "Ice dam removal",
-    summary: "Low-pressure steam to clear roof edges and prevent winter leaks.",
+    group: "Seasonal offer",
+    summary: "Winter roof-edge ice support for leaks and freeze-thaw problems when conditions require it.",
   },
 ];
 ---
@@ -51,32 +78,45 @@ const services = [
     <header>
       <h1>{title}</h1>
       <p>{description}</p>
-      <p class="service-areas">Serving Hyde Park, South Shore, Bronzeville, Lakeview, Lincoln Park, Evanston, Wilmette, and more.</p>
+      <p class="service-areas">Primary: lawn care and yard cleanup. Secondary: branch trimming, planting, and mulch. Seasonal: snow removal.</p>
       <p class="locations-note">
-        See location specifics for
+        We serve Chicago neighborhoods and nearby communities including
         <a href="/locations/snow-removal-chicago/">Chicago</a>,
         <a href="/locations/snow-removal-hyde-park/">Hyde Park</a>,
-        <a href="/locations/snow-removal-lakeview/">Lakeview</a>, and
-        <a href="/locations/snow-removal-lincoln-park/">Lincoln Park</a>, or view the
+        <a href="/locations/snow-removal-lakeview/">Lakeview</a>,
+        <a href="/locations/snow-removal-lincoln-park/">Lincoln Park</a>, and more. View the
         <a href="/locations/">full service-area list</a>.
       </p>
     </header>
     <ul>
       {services.map((service) => (
         <li>
+          <p class="group">{service.group}</p>
           <h2><a href={service.href}>{service.name}</a></h2>
           <p>{service.summary}</p>
           <a class="cta" href={service.href}>Learn more</a>
         </li>
       ))}
     </ul>
+    <section class="gallery-ready">
+      <h2>Photo proof coming from real jobs</h2>
+      <p>
+        The services are set up for before/after photos from actual cuts, cleanup jobs, branch trimming, planting, mulch, and
+        winter work. Real neighborhood photos should replace these placeholders as soon as jobs are documented.
+      </p>
+      <div class="photo-slots">
+        <span>Before</span>
+        <span>After</span>
+        <span>Crew</span>
+      </div>
+    </section>
   </section>
 </Base>
 
 <style>
   .listing {
     margin: 0 auto;
-    max-width: 720px;
+    max-width: 960px;
     padding: 3rem 1.5rem;
     display: grid;
     gap: 2rem;
@@ -88,6 +128,7 @@ const services = [
     padding: 0;
     display: grid;
     gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 
   li {
@@ -114,6 +155,15 @@ const services = [
     background: #1d4ed8;
   }
 
+  .group {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #475569;
+  }
+
   .service-areas {
     margin: 0;
     font-weight: 600;
@@ -123,5 +173,35 @@ const services = [
   .locations-note {
     margin: 0;
     color: #1f2937;
+  }
+
+  .gallery-ready {
+    background: #f1f5f9;
+    border: 2px dashed #94a3b8;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .gallery-ready h2,
+  .gallery-ready p {
+    margin: 0;
+  }
+
+  .photo-slots {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .photo-slots span {
+    display: grid;
+    min-height: 90px;
+    place-items: center;
+    border-radius: 0.75rem;
+    background: #e2e8f0;
+    color: #334155;
+    font-weight: 700;
   }
 </style>

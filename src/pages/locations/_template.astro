@@ -56,7 +56,7 @@ const localBusinessSchema = {
 
 const serviceSchema = {
   "@context": "https://schema.org",
-  "@type": ["SnowRemovalService", "Service"],
+  "@type": "Service",
   name: `${serviceName} in ${schemaLocation} | ${BUSINESS.name}`,
   description,
   areaServed: schemaLocation,
@@ -123,6 +123,17 @@ const schema = [localBusinessSchema, serviceSchema, ...(faqSchema ? [faqSchema] 
       <h1>{title}</h1>
       <p class="lead">{description}</p>
     </header>
+    <section class="year-round-note">
+      <h2>Year-round outdoor help in {displayLocation}</h2>
+      <p>
+        This route also supports lawn care, yard cleanup, light branch trimming, basic planting, and mulch work. Snow removal
+        remains available as the seasonal winter service for customers who need clear walks, drives, and entries.
+      </p>
+      <p>
+        For current lawn or cleanup work, <a href="/contact/">request a quote</a> or start with our
+        <a href="/services/">service list</a>.
+      </p>
+    </section>
     <slot />
     {faqs.length > 0 && (
       <section class="faq">
@@ -176,6 +187,19 @@ const schema = [localBusinessSchema, serviceSchema, ...(faqSchema ? [faqSchema] 
     font-size: 1.125rem;
     line-height: 1.6;
     color: #1f2937;
+  }
+
+  .year-round-note {
+    background: #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .year-round-note h2,
+  .year-round-note p {
+    margin: 0;
   }
 
   .internal-links ul {

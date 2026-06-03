@@ -4,8 +4,8 @@ import SEO from "../../components/SEO.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import { BUSINESS } from "../../data/business";
 
-const title = "Snow removal locations";
-const description = "See Lakeshore Outdoor Services coverage across Chicago’s lakefront neighborhoods and nearby North Shore communities.";
+const title = "Chicago outdoor service areas";
+const description = "See Lakeshore Outdoor Services coverage for lawn care, yard cleanup, branch trimming, planting, mulch, and seasonal snow removal.";
 const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
 const breadcrumbs = {
   "@context": "https://schema.org",
@@ -40,17 +40,17 @@ const areaPageMap = new Map<string, string>([
 ]);
 
 const areaSummaries: Record<string, string> = {
-  "Hyde Park": "University-area homes, institutions, and condo buildings near the lakefront.",
-  "South Shore": "Lakefront residences, condos, and cultural sites needing careful walkway clearing.",
-  "Bronzeville": "Greystones, brownstones, and mixed-use blocks along the Cottage Grove corridor.",
-  "Roseland": "Single-family homes and small businesses along Michigan Avenue and 111th Street.",
-  "Pullman": "Historic rowhomes and industrial campuses requiring reliable snow staging.",
-  "Altgeld Gardens": "Townhome communities and campus-style developments on the Far South Side.",
-  "Lakeview": "Dense North Side blocks with alleys, shared drives, and busy retail corridors.",
-  "Lincoln Park": "Rowhouses, mid-rises, and storefronts along Clark, Halsted, and Armitage.",
+  "Hyde Park": "Homes, rental properties, small institutions, and yards near the lakefront.",
+  "South Shore": "Lakefront residences, condos, yards, gangways, and community properties.",
+  "Bronzeville": "Greystones, brownstones, storefronts, churches, and mixed-use blocks.",
+  "Roseland": "Single-family homes, small businesses, churches, and neighborhood yards.",
+  "Pullman": "Historic rowhomes, side yards, walkways, and small commercial properties.",
+  "Altgeld Gardens": "Townhome communities and campus-style outdoor areas on the Far South Side.",
+  "Lakeview": "Dense North Side blocks with alleys, shared drives, courtyards, and small yards.",
+  "Lincoln Park": "Rowhouses, mid-rises, storefronts, and maintained neighborhood properties.",
   "Evanston": "North Shore residences, schools, and small businesses near transit and lakefront routes.",
-  "Wilmette": "Residential streets, lakefront estates, and village retail centers.",
-  "Winnetka": "Estate drives, private lanes, and community institutions across the North Shore.",
+  "Wilmette": "Residential streets, lakefront homes, and village retail centers.",
+  "Winnetka": "Private drives, yards, and community institutions across the North Shore.",
 };
 
 const areas = BUSINESS.areasServed.map((area) => ({
@@ -67,7 +67,8 @@ const areas = BUSINESS.areasServed.map((area) => ({
       <h1>{title}</h1>
       <p>{description}</p>
       <p class="note">
-        Looking for our citywide overview? Visit the <a href="/locations/snow-removal-chicago/">Chicago snow removal page</a>.
+        Existing area detail pages keep their snow-removal URLs for search visibility, while the service area now supports lawn
+        care, yard cleanup, light branch trimming, planting, mulch, and winter snow removal.
       </p>
     </header>
     <ul>
@@ -76,7 +77,7 @@ const areas = BUSINESS.areasServed.map((area) => ({
           {area.href ? <h2><a href={area.href}>{area.name}</a></h2> : <h2>{area.name}</h2>}
           {area.summary && <p>{area.summary}</p>}
           {area.href && (
-            <a class="cta" href={area.href} aria-label={`View snow removal service details for ${area.name}`}>
+            <a class="cta" href={area.href} aria-label={`View service details for ${area.name}`}>
               View area details
             </a>
           )}

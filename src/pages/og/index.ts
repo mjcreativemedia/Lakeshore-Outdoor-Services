@@ -11,7 +11,7 @@ const ACCENT_GRADIENT_ID = 'accent';
 const svgTemplate = () => `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">${BUSINESS.name}</title>
-  <desc id="desc">Winter property maintenance specialists in Chicagoland</desc>
+  <desc id="desc">Lawn care and yard cleanup specialists in Chicago</desc>
   <defs>
     <linearGradient id="${BACKGROUND_GRADIENT_ID}" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#172554" />
@@ -37,7 +37,7 @@ const svgTemplate = () => `<?xml version="1.0" encoding="UTF-8"?>
       ${BUSINESS.name}
     </text>
     <text y="96" fill="#cbd5f5" font-family="'Inter', 'Segoe UI', sans-serif" font-size="32" font-weight="500" letter-spacing="0.04em">
-      Snow &amp; ice management across Chicago neighborhoods
+      Lawn care, yard cleanup, and seasonal snow removal
     </text>
     <text y="164" fill="#93c5fd" font-family="'Inter', 'Segoe UI', sans-serif" font-size="26" font-weight="500">
       Call ${phone_display}

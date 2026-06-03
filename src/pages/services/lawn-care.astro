@@ -1,0 +1,77 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+import { phone_display, phone_e164 } from "../../data/business";
+
+const page: Props = {
+  title: "Chicago lawn care for homes and small properties",
+  description:
+    "Grass cutting, weed cleanup, edging, and simple lawn maintenance for Chicago homeowners, landlords, churches, and neighborhood properties.",
+  serviceName: "Lawn care",
+  city: "Chicago",
+  internalLinks: [
+    {
+      href: "/services/yard-cleanup/",
+      label: "Yard cleanup",
+      description: "Pair mowing with overgrowth cleanup, leaf pickup, and bagged debris removal.",
+    },
+    {
+      href: "/services/branch-trimming/",
+      label: "Branch trimming",
+      description: "Handle low branches and fence-line growth while the lawn is being cleaned up.",
+    },
+    {
+      href: "/contact/",
+      label: "Request a lawn care quote",
+      description: "Call or send property details so we can schedule the right crew.",
+    },
+  ],
+  faqs: [
+    {
+      question: "What lawn care jobs do you take first?",
+      answer:
+        "We focus on grass cutting, weed cleanup, edging, light trimming, and cleanup for residential yards, small rental properties, churches, and neighborhood lots.",
+    },
+    {
+      question: "Can you help with overgrown grass?",
+      answer:
+        "Yes. Send a few photos if the grass is high or the yard has debris so we can plan bags, tools, and timing before arrival.",
+    },
+    {
+      question: "How do I get scheduled?",
+      answer:
+        `Call or text ${phone_display}, or use the contact form with your address and photos if available.`,
+      answerHtml: `<p>Call or text <a href="tel:${phone_e164}">${phone_display}</a>, or use the <a href="/contact/">contact form</a> with your address and photos if available.</p>`,
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Reliable cuts without making it complicated</h2>
+    <p>
+      Lawn care is the front door of the business. We keep the offer clear: cut the grass, knock down weeds, edge the visible
+      areas, and leave the property cleaner than we found it.
+    </p>
+    <ul>
+      <li>One-time cuts for overgrown lawns</li>
+      <li>Recurring mowing for homeowners and landlords</li>
+      <li>Weed cleanup around fences, sidewalks, and gangways</li>
+      <li>Bagging and light cleanup after the cut</li>
+    </ul>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+</style>

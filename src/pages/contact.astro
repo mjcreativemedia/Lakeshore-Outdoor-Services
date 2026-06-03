@@ -4,9 +4,9 @@ import SEO from "../components/SEO.astro";
 import JsonLd from "../components/JsonLd.astro";
 import { BUSINESS, phone_display, phone_e164 } from "../data/business";
 
-const title = "Request a snow removal quote";
+const title = "Request a lawn care or yard cleanup quote";
 const description =
-  "Connect with Lakeshore Outdoor Services for Chicago snow removal pricing. Call our team or send the form for a tailored seasonal or per-event quote.";
+  "Connect with Lakeshore Outdoor Services for Chicago lawn care, yard cleanup, branch trimming, planting, mulch, and seasonal snow removal quotes.";
 const canonical = new URL(Astro.url.pathname, BUSINESS.site).toString();
 const phoneDisplay = phone_display;
 const businessAddress = {
@@ -39,8 +39,8 @@ const schema: Record<string, unknown> = {
       <p>
         We’re a Chicago-based service-area business serving Hyde Park, South Shore, Bronzeville, Roseland, Pullman, Altgeld
         Gardens, Lakeview, Lincoln Park, Evanston, Wilmette, and Winnetka. Call us at
-        <a href={`tel:${phone_e164}`}>{phoneDisplay}</a> or share the details below and we'll follow up with a custom snow
-        removal quote.
+        <a href={`tel:${phone_e164}`}>{phoneDisplay}</a> or share the details below and we'll follow up about lawn care, yard
+        cleanup, light branch trimming, planting, mulch, or seasonal snow removal.
       </p>
     </header>
     <form action="https://formspree.io/f/your-form-id" method="POST" class="form">
@@ -72,7 +72,7 @@ const schema: Record<string, unknown> = {
       </label>
       <label>
         <span>Project details</span>
-        <textarea name="message" rows="5" required placeholder="Tell us about your property and snow challenges"></textarea>
+        <textarea name="message" rows="5" required placeholder="Tell us what needs cutting, cleaning, trimming, planting, or clearing"></textarea>
       </label>
       <button type="submit">Request my quote</button>
     </form>

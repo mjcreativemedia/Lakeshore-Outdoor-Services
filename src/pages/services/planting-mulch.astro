@@ -1,0 +1,70 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+
+const page: Props = {
+  title: "Chicago planting and mulch refreshes",
+  description:
+    "Basic planting, garden bed cleanup, seed starts, flower installs, and mulch spreading for Chicago homes, churches, and small neighborhood properties.",
+  serviceName: "Planting and mulch",
+  city: "Chicago",
+  internalLinks: [
+    {
+      href: "/services/yard-cleanup/",
+      label: "Yard cleanup",
+      description: "Clear weeds and old leaves before adding plants or mulch.",
+    },
+    {
+      href: "/services/lawn-care/",
+      label: "Lawn care",
+      description: "Keep the whole property maintained after the beds are refreshed.",
+    },
+    {
+      href: "/contact/",
+      label: "Request planting or mulch",
+      description: "Tell us what area you want cleaned, planted, or covered.",
+    },
+  ],
+  faqs: [
+    {
+      question: "What kind of planting do you offer?",
+      answer:
+        "We focus on basic planting and garden refreshes: flowers, small beds, seeds, simple vegetables, and straightforward curb-appeal projects.",
+    },
+    {
+      question: "Can you spread mulch after cleanup?",
+      answer:
+        "Yes. Mulch works best after weeds and leaves are cleared, so we can pair bed cleanup with spreading fresh mulch.",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Simple garden work with clean results</h2>
+    <p>
+      Planting and mulch are secondary services for customers who want a yard to feel cared for after the main cleanup is done.
+      We keep the scope practical and focused on visible, useful improvements.
+    </p>
+    <ul>
+      <li>Garden bed cleanup before planting</li>
+      <li>Flower and basic vegetable planting</li>
+      <li>Mulch spreading around beds and borders</li>
+      <li>Small curb-appeal refreshes</li>
+    </ul>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+</style>

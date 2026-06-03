@@ -1,0 +1,70 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+
+const page: Props = {
+  title: "Chicago branch trimming and light brush cleanup",
+  description:
+    "Light branch trimming, fence-line growth, low limbs, small bushes, and cleanup support for Chicago homes and neighborhood properties.",
+  serviceName: "Branch trimming",
+  city: "Chicago",
+  internalLinks: [
+    {
+      href: "/services/yard-cleanup/",
+      label: "Yard cleanup",
+      description: "Clean up the grass, leaves, and bags after trimming is done.",
+    },
+    {
+      href: "/services/lawn-care/",
+      label: "Lawn care",
+      description: "Keep the lawn cut after branches and brush are cleared.",
+    },
+    {
+      href: "/contact/",
+      label: "Request branch trimming",
+      description: "Send photos of the branches, fence line, or gate area so we can plan the tools.",
+    },
+  ],
+  faqs: [
+    {
+      question: "What kind of branch trimming do you handle?",
+      answer:
+        "We handle light trimming: low limbs, branches crossing fences or gates, small bushes, and reachable growth that can be managed with hand tools or a pole saw.",
+    },
+    {
+      question: "Do you remove large trees?",
+      answer:
+        "No. Large tree removal, dangerous limbs near power lines, and major chainsaw work should go to a licensed tree service.",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>Light trimming that makes the yard usable</h2>
+    <p>
+      Branch trimming is a secondary service that pairs naturally with lawn care and cleanup. The goal is simple: clear the
+      branches, twigs, and overgrowth that block gates, fences, sidewalks, or the clean look of the yard.
+    </p>
+    <ul>
+      <li>Low-hanging limbs and small branches</li>
+      <li>Fence-line growth and gate obstructions</li>
+      <li>Basic bush shaping and cleanup</li>
+      <li>Cuttings staged or bagged based on the job</li>
+    </ul>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+</style>

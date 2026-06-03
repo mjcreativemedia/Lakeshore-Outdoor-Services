@@ -1,0 +1,70 @@
+---
+import Template from "./_template.astro";
+import type { Props } from "./_template.astro";
+
+const page: Props = {
+  title: "Chicago yard cleanup crews",
+  description:
+    "Yard cleanup for overgrown grass, weeds, leaves, light debris, fence lines, gangways, and small Chicago properties that need to be brought back under control.",
+  serviceName: "Yard cleanup",
+  city: "Chicago",
+  internalLinks: [
+    {
+      href: "/services/lawn-care/",
+      label: "Lawn care",
+      description: "Finish the cleanup with mowing, edging, and weed control.",
+    },
+    {
+      href: "/services/planting-mulch/",
+      label: "Planting and mulch",
+      description: "Refresh cleaned beds with simple planting or mulch.",
+    },
+    {
+      href: "/contact/",
+      label: "Request a yard cleanup quote",
+      description: "Share the address, photos, and what needs to be removed or bagged.",
+    },
+  ],
+  faqs: [
+    {
+      question: "What counts as yard cleanup?",
+      answer:
+        "Common jobs include cutting down weeds, collecting leaves, clearing fence lines, bagging yard waste, and cleaning up small outdoor areas around homes or rental properties.",
+    },
+    {
+      question: "Do you handle large hauling jobs?",
+      answer:
+        "The first focus is light yard cleanup and bagged debris. If a job needs heavy hauling, we can review photos and decide what is realistic before scheduling.",
+    },
+  ],
+};
+---
+<Template {...page}>
+  <section>
+    <h2>For yards that need a reset</h2>
+    <p>
+      Some properties do not need a full landscaping company. They need a dependable crew to show up, cut back the overgrowth,
+      bag what needs bagging, and make the yard usable again.
+    </p>
+    <ul>
+      <li>Overgrown grass and weed knockdown</li>
+      <li>Leaf cleanup and bagging</li>
+      <li>Fence-line and gangway cleanup</li>
+      <li>Light outdoor debris staging</li>
+    </ul>
+  </section>
+</Template>
+
+<style>
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+</style>
